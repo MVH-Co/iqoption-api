@@ -1,0 +1,126 @@
+# IQ Option Api Wrapper
+
+This is a Typescript wrapper for the IQ Option API. It allows you to connect to the IQ Option API.
+
+## Installation
+
+```bash
+# node
+npm install iqoptionapi
+# deno
+deno install --unstable --allow-net --allow-read --allow-write --name=iqoptionapi https://deno.land/x/iqoptionapi/mod.ts
+```
+
+## Usage
+
+```typescript
+import IqOption from "iqoptionapi";
+
+const identifier = "";
+const password = "";
+
+await IqOption.http.auth.login(identifier, password);
+
+// define action when message received
+IqOption.ws.onMessage = (message) => console.log(message);
+// define action when ws opened
+IqOption.ws.onOpen = () => {
+  // authenticate ws
+  console.log("Authenticating ws...");
+  IqOption.ws.auth.authenticate();
+};
+
+// connect to ws
+IqOption.ws.connect();
+
+// after 20 sec logout
+setTimeout(async () => {
+  IqOption.ws.close();
+  await IqOption.http.auth.logout();
+}, 20000);
+
+```
+
+## Documentation
+
+Http connection is needed to get the websocket token. The websocket token is needed to connect to the websocket.
+
+When the websocket is connected, you can listen to messages and send messages.
+
+I recommend to use the `IqOption.ws.onMessage` and `IqOption.ws.onOpen` to define actions when messages are received and when the websocket is opened.
+
+A good practice is to create an handler to run the actions by received message name.
+
+An other can be to create a propers and adapters class to adapte the messages.
+
+## Features
+
+- [x] Http connection
+  - [x] Avatar
+    - [x] get avatar
+  - [x] Auth
+    - [x] Login
+    - [x] Logout
+    - [x] check session
+    - [x] 2FA ⚙️
+  - [x] Profile
+    - [x] get user profile
+  - [x] financial info
+    - [x] graphql ⚙️
+    - [x] `POST` options ⚙️
+  - [x] features
+    - [x] get features ⚙️
+  - [x] Event
+    - [x] get events ⚙️
+  - [x] Core
+    - [x] get currencies ⚙️
+    - [x] get timezone2 ⚙️
+    - [x] get registreted data ⚙️ (maybe even than `get user profile`)
+    - [x] get countries ⚙️
+    - [x] get contact info ⚙️
+    - [x] get configuration ⚙️
+    - [x] get manager ⚙️
+  - [x] Billing
+    - [x] `POST` buyback ⚙️
+    - [x] `POST` get card ⚙️
+    - [x] `POST` get payment methods ⚙️
+    - [x] `POST` get payout methods ⚙️
+  - [x] Balance
+    - [x] `POST` change balance ⚙️
+- [x] Websocket connection
+  - [x] Auth
+    - [x] Authenticate
+  - [x] Balance
+    - [x] get balance
+    - [x] subscribe balance
+    - [x] unsubscribe balance
+  - [x] Profile
+    - [x] get profile
+    - [x] subscribe profile
+    - [x] unsubscribe profile
+    - [x] get user info
+    - [x] get user profile client
+  - [x] Position
+    - [x] get position
+    - [x] update position
+    - [x] close position
+    - [x] get positions
+    - [x] get positions by type
+    - [x] get history positions
+    - [x] subscribe positions
+    - [x] subscribe position changed
+    - [x] unsubscribe position
+  - [x] Order
+    - [x] get order
+    - [x] get orders
+    - [x] subscribe order
+    - [x] unsubscribe order
+  - [x] Candle
+    - [x] get candles
+    - [x] subscribe candles
+    - [x] unsubscribe candles
+  - [x] Instrument
+    - [x] get instruments
+    - [x] subscribe instruments
+    - [x] unsubscribe instruments
+  - [ ] Others...

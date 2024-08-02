@@ -10,7 +10,7 @@ import * as Candle from "./services/candle.ws.ts";
 import * as Balance from "./services/balance.ws.ts";
 import * as Core from "./services/core.ws.ts";
 
-import Ws from "./utils/ws.ts";
+import type Ws from "./utils/ws.ts";
 
 class ApiWs {
   private ws: Ws;
@@ -19,14 +19,23 @@ class ApiWs {
     this.ws = ws;
   }
 
-  get auth() {
+  get auth(): {
+    authenticate: () => void;
+  } {
     if (!this.ws.http.token) throw new Error("Token not found");
     return {
       authenticate: () => Auth.authenticate(this.ws),
     };
   }
 
-  get profile() {
+  get profile(): {
+    get: () => void;
+    subscribe: () => void;
+    unsubscribe: () => void;
+    availability: (userId: number) => void;
+    getUserInfo: (country: [number], userId: number) => void;
+    userProfileClient: (userId: number) => void;
+  } {
     return {
       get: () => Profile.get(this.ws),
       subscribe: () => Profile.subscribe(this.ws),
@@ -39,7 +48,11 @@ class ApiWs {
     };
   }
 
-  get balance() {
+  get balance(): {
+    get: (typesIds: number[]) => void;
+    subscribe: () => void;
+    unsubscribe: () => void;
+  } {
     return {
       get: (typesIds: number[]) => Balance.get(this.ws, typesIds),
       subscribe: () => Balance.subscribe(this.ws),
@@ -47,7 +60,11 @@ class ApiWs {
     };
   }
 
-  get core() {
+  get core(): {
+    getCommissions: () => void;
+    setOptions: () => void;
+    heartbeat: (beat: number, localTime: number) => void;
+  } {
     return {
       getCommissions: () => Core.getCommissions(this.ws),
       setOptions: () => Core.setOptions(this.ws),
@@ -56,7 +73,11 @@ class ApiWs {
     };
   }
 
-  get candle() {
+  get candle(): {
+    get: (options: Candle.GetOptions) => void;
+    subscribe: (options: Candle.SubscribeOptions) => void;
+    unsubscribe: (options: Candle.UnsubscribeOptions) => void;
+  } {
     return {
       get: (options: Candle.GetOptions) => Candle.get(this.ws, options),
       subscribe: (options: Candle.SubscribeOptions) =>
@@ -66,7 +87,18 @@ class ApiWs {
     };
   }
 
-  get position() {
+  get position(): {
+    get: () => void;
+    getByType: (options: Position.GetPositionsByType) => void;
+    getById: (positionId: number) => void;
+    close: (positionId: number) => void;
+    getHistory: (options: Position.GetHistoryOptions) => void;
+    subscribeToIds: (ids: string[]) => void;
+    subscribe: (options: Position.SubscribeOptions) => void;
+    unsubscribe: (options: Position.UnsubscribeOptions) => void;
+    subscribeState: () => void;
+    update: (positionId: number, stop: number) => void;
+  } {
     return {
       get: () => Position.get(this.ws),
       getByType: (options: Position.GetPositionsByType) =>
@@ -86,7 +118,11 @@ class ApiWs {
     };
   }
 
-  get instrument() {
+  get instrument(): {
+    get: (instrument_type: Instrument.instrumentType) => void;
+    subscribe: (instrument_type: Instrument.instrumentType) => void;
+    unsubscribe: (instrument_type: Instrument.instrumentType) => void;
+  } {
     return {
       get: (instrument_type: Instrument.instrumentType) =>
         Instrument.get(this.ws, instrument_type),
@@ -97,7 +133,15 @@ class ApiWs {
     };
   }
 
-  get order() {
+  get order(): {
+    get: (options: Order.getOptions) => void;
+    getAllStopLose: (options: Order.getAllStopLoseOptions) => void;
+    cancelStopLose: (orderId: number) => void;
+    subscribe: (options: Order.SubscribeOptions) => void;
+    place: (body: Order.placeOrderParams) => void;
+    changed: (options: Order.ChangedOptions) => void;
+    subscribeState: () => void;
+  } {
     return {
       get: (options: Order.getOptions) => Order.get(this.ws, options),
       getAllStopLose: (options: Order.getAllStopLoseOptions) =>
@@ -113,7 +157,11 @@ class ApiWs {
     };
   }
 
-  get leverage() {
+  get leverage(): {
+    get: (instrumentType: Instrument.instrumentType) => void;
+    subscribe: (instrumentType: Instrument.instrumentType) => void;
+    unsubscribe: (instrumentType: Instrument.instrumentType) => void;
+  } {
     return {
       get: (instrumentType: Instrument.instrumentType) =>
         Leverage.get(this.ws, instrumentType),
@@ -124,7 +172,11 @@ class ApiWs {
     };
   }
 
-  get mood() {
+  get mood(): {
+    get: (options: Mood.GetOptions) => void;
+    subscribe: (options: Mood.SubscribeOptions) => void;
+    unsubscribe: (options: Mood.UnsubscribeOptions) => void;
+  } {
     return {
       get: (options: Mood.GetOptions) => Mood.get(this.ws, options),
       subscribe: (options: Mood.SubscribeOptions) =>
@@ -134,25 +186,27 @@ class ApiWs {
     };
   }
 
-  get indicator() {
+  get indicator(): {
+    get: (id: number) => void;
+  } {
     return {
       get: (id: number) => Indicator.get(this.ws, id),
     };
   }
 
-  get isConnected() {
+  get isConnected(): boolean {
     return this.ws.isConnected;
   }
 
-  get connect() {
+  get connect(): () => void {
     return () => this.ws.connect();
   }
 
-  get reconnect() {
+  get reconnect(): () => void {
     return () => this.ws.reconnect();
   }
 
-  get close() {
+  get close(): () => void {
     return () => this.ws.close();
   }
 

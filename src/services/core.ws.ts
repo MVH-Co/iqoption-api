@@ -1,5 +1,5 @@
-import Ws from "../utils/ws.ts";
-import { instrumentType } from "./instrument.type.ts";
+import type Ws from "../utils/ws.ts";
+import type { instrumentType } from "./instrument.type.ts";
 export type * from "./core.type.ts";
 
 // export function get(name: string) {

@@ -1,5 +1,5 @@
-import { instrumentType } from "./instrument.type.ts";
-import { order } from "./order.type.ts";
+import type { instrumentType } from "./instrument.type.ts";
+import type { order } from "./order.type.ts";
 
 export type positionState = {
   id: string;

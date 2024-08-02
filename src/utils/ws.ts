@@ -1,4 +1,4 @@
-import Http from "./http.ts";
+import type Http from "./http.ts";
 
 class Ws {
   private _ws?: WebSocket;

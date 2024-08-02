@@ -1,5 +1,5 @@
-import { placeOrderParams } from "./order.type.ts";
-import Ws from "../utils/ws.ts";
+import type { placeOrderParams } from "./order.type.ts";
+import type Ws from "../utils/ws.ts";
 export type * from "./order.type.ts";
 
 export type getAllStopLoseOptions = {

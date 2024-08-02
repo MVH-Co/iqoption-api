@@ -1,4 +1,4 @@
-import Ws from "../utils/ws.ts";
+import type Ws from "../utils/ws.ts";
 
 // TODO: Implement the get function
 export function get(ws: Ws, id: number): void {

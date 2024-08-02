@@ -1,5 +1,5 @@
-import { instrumentType } from "./instrument.type.ts";
-import { extraData } from "./position.type.ts";
+import type { instrumentType } from "./instrument.type.ts";
+import type { extraData } from "./position.type.ts";
 
 export type placeOrderParams = {
   user_balance_id: number;

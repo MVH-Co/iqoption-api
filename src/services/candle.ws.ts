@@ -1,4 +1,4 @@
-import Ws from "../utils/ws.ts";
+import type Ws from "../utils/ws.ts";
 export type * from "./candle.type.ts";
 
 export type GetOptions = {

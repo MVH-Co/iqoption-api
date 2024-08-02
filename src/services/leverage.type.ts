@@ -1,4 +1,4 @@
-import { instrumentType } from "./instrument.type.ts";
+import type { instrumentType } from "./instrument.type.ts";
 
 export type leverage = {
   active_id: number;

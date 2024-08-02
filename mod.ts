@@ -17,4 +17,6 @@ class IqOption {
   }
 }
 
-export default new IqOption();
+const iqOption: IqOption = new IqOption();
+
+export default iqOption;

@@ -1,4 +1,5 @@
-import Http, { dataResponse } from "../utils/http.ts";
+import type Http from "../utils/http.ts";
+import type { dataResponse } from "../utils/http.ts";
 export type * from "./balance.type.ts";
 
 export function post(

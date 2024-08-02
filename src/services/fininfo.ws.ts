@@ -1,4 +1,4 @@
-import Ws from "../utils/ws.ts";
+import type Ws from "../utils/ws.ts";
 export type * from "./fininfo.type.ts";
 
 export function get(ws: Ws, active: number) {

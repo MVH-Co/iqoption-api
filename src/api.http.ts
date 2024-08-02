@@ -1,4 +1,5 @@
-import Http from "./utils/http.ts";
+import type Http from "./utils/http.ts";
+import type { dataResponse } from "./utils/http.ts";
 import * as Auth from "./services/auth.http.ts";
 import * as Profile from "./services/profile.http.ts";
 import * as Avatar from "./services/avatar.http.ts";
@@ -15,36 +16,59 @@ class ApiHttp {
     this.http = http;
   }
 
-  get auth() {
+  get auth(): {
+    login: (payload: Auth.LoginPayload) => Promise<dataResponse<Auth.login>>;
+    logout: () => Promise<dataResponse<Auth.logout>>;
+    session: () => Promise<dataResponse<Auth.session>>;
+  } {
     return {
       login: (payload: Auth.LoginPayload) => Auth.login(this.http, payload),
       logout: () => Auth.logout(this.http),
       session: () => Auth.session(this.http),
     };
   }
-  get profile() {
+  get profile(): {
+    get: () => Promise<dataResponse<Profile.profile>>;
+  } {
     return {
       get: () => Profile.get(this.http),
     };
   }
-  get avatar() {
+  get avatar(): {
+    get: (current?: boolean) => Promise<dataResponse<Avatar.avatar>>;
+  } {
     return {
       get: (current = false) => Avatar.get(this.http, current),
     };
   }
-  get FinInfo() {
+  get FinInfo(): {
+    graphql: (
+      payload: FinInfo.GraphqlPayload,
+    ) => Promise<dataResponse<unknown>>;
+    postOptions: (query: string) => Promise<dataResponse<unknown>>;
+  } {
     return {
       graphql: (payload: FinInfo.GraphqlPayload) =>
         FinInfo.graphql(this.http, payload),
       postOptions: (query: string) => FinInfo.postOptions(this.http, query),
     };
   }
-  get balance() {
+  get balance(): {
+    post: (balanceId: number) => Promise<dataResponse<unknown>>;
+  } {
     return {
       post: (balanceId: number) => Balance.post(this.http, balanceId),
     };
   }
-  get core() {
+  get core(): {
+    getConfiguration: () => Promise<dataResponse<unknown>>;
+    getCurrencies: () => Promise<dataResponse<Core.currencies>>;
+    getTimezones2: () => Promise<dataResponse<unknown>>;
+    getRegData: () => Promise<dataResponse<Profile.profile>>;
+    getCountries: () => Promise<dataResponse<Core.countries>>;
+    getContactInfo: () => Promise<dataResponse<Core.contactInfo>>;
+    getManager: () => Promise<dataResponse<Core.contactInfo>>;
+  } {
     return {
       getConfiguration: () => Core.getConfiguration(this.http),
       getCurrencies: () => Core.getCurrencies(this.http),
@@ -55,12 +79,16 @@ class ApiHttp {
       getManager: () => Core.getManager(this.http),
     };
   }
-  get event() {
+  get event(): {
+    get: () => Promise<dataResponse<unknown>>;
+  } {
     return {
       get: () => Event.get(this.http),
     };
   }
-  get features() {
+  get features(): {
+    get: () => Promise<dataResponse<unknown>>;
+  } {
     return {
       get: () => Features.get(this.http),
     };

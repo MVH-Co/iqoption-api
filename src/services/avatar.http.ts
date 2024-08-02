@@ -1,5 +1,6 @@
-import Http, { dataResponse } from "../utils/http.ts";
-import { avatar } from "./avatar.type.ts";
+import type Http from "../utils/http.ts";
+import type { dataResponse } from "../utils/http.ts";
+import type { avatar } from "./avatar.type.ts";
 export type * from "./avatar.type.ts";
 
 const path = "avatars";

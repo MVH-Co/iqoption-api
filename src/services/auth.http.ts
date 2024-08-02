@@ -1,7 +1,7 @@
 import type Http from "../utils/http.ts";
-export type * from "./auth.type.ts";
 import type { dataResponse } from "../utils/http.ts";
 import type { login, logout, session } from "./auth.type.ts";
+export type * from "./auth.type.ts";
 
 const path = "auth";
 

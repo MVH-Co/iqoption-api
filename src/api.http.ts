@@ -8,6 +8,7 @@ import * as Balance from "./services/balance.http.ts";
 import * as Core from "./services/core.http.ts";
 import * as Event from "./services/event.http.ts";
 import * as Features from "./services/features.http.ts";
+import type { login, logout, session } from "./services/auth.type.ts";
 
 class ApiHttp {
   private http: Http;
@@ -17,9 +18,9 @@ class ApiHttp {
   }
 
   get auth(): {
-    login: (payload: Auth.LoginPayload) => Promise<dataResponse<Auth.login>>;
-    logout: () => Promise<dataResponse<Auth.logout>>;
-    session: () => Promise<dataResponse<Auth.session>>;
+    login: (payload: Auth.LoginPayload) => Promise<dataResponse<login>>;
+    logout: () => Promise<dataResponse<logout>>;
+    session: () => Promise<dataResponse<session>>;
   } {
     return {
       login: (payload: Auth.LoginPayload) => Auth.login(this.http, payload),
@@ -27,6 +28,7 @@ class ApiHttp {
       session: () => Auth.session(this.http),
     };
   }
+
   get profile(): {
     get: () => Promise<dataResponse<Profile.profile>>;
   } {

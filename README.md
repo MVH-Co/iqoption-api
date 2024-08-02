@@ -2,14 +2,6 @@
 
 This is a Typescript wrapper for the IQ Option API. It allows you to connect to the IQ Option API.
 
-## Installation
-
-```bash
-# node
-npm install iqoptionapi
-# deno
-deno install --unstable --allow-net --allow-read --allow-write --name=iqoptionapi https://deno.land/x/iqoptionapi/mod.ts
-```
 
 ## Usage
 

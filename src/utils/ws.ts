@@ -1,5 +1,10 @@
 import type Http from "./http.ts";
 
+/**
+ * Ws class
+ * @param http - Http instance
+ * @module Ws
+ */
 class Ws {
   private _ws?: WebSocket;
   declare http: Http;
@@ -20,6 +25,12 @@ class Ws {
     this.url = "wss://iqoption.com/echo/websocket";
   }
 
+  /**
+   * Connect to websocket
+   * @returns {void}
+   * @method connect
+   * @module Ws
+   */
   connect(): void {
     try {
       if (!this.url) {
@@ -57,6 +68,12 @@ class Ws {
     }
   }
 
+  /**
+   * Reconnect to websocket
+   * @returns {void}
+   * @method reconnect
+   * @module Ws
+   */
   reconnect(): void {
     if (this.isConnected) this._ws?.close();
     this.isConnected = false;
@@ -67,6 +84,12 @@ class Ws {
     this.connect();
   }
 
+  /**
+   * Close websocket connection
+   * @returns {void}
+   * @method close
+   * @module Ws
+   */
   close(): void {
     if (this.isConnected) this._ws?.close();
     this.isConnected = false;
@@ -76,6 +99,12 @@ class Ws {
     this.messageId = 0;
   }
 
+  /**
+   * Send message to websocket
+   * @param {Record<string, unknown>} message - Message to send
+   * @method send
+   * @module Ws
+   */
   send(message: Record<string, unknown>): void {
     if (this.isConnected && this._ws) {
       const messagestr = JSON.stringify(message);

@@ -12,6 +12,11 @@ import * as Core from "./services/core.ws.ts";
 
 import type Ws from "./utils/ws.ts";
 
+/**
+ * ApiWs class
+ * @param ws - Ws instance
+ * @module ApiWs
+ */
 class ApiWs {
   private ws: Ws;
 
@@ -19,6 +24,10 @@ class ApiWs {
     this.ws = ws;
   }
 
+  /**
+   * Auth methods
+   * @returns {Object} - Auth methods
+   */
   get auth(): {
     authenticate: () => void;
   } {
@@ -28,6 +37,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Profile methods
+   * @returns {Object} - Profile methods
+   */
   get profile(): {
     get: () => void;
     subscribe: () => void;
@@ -48,6 +61,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Balance methods
+   * @returns {Object} - Balance methods
+   */
   get balance(): {
     get: (typesIds: number[]) => void;
     subscribe: () => void;
@@ -60,6 +77,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Core methods
+   * @returns {Object} - Core methods
+   */
   get core(): {
     getCommissions: () => void;
     setOptions: () => void;
@@ -73,6 +94,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Candle methods
+   * @returns {Object} - Candle methods
+   */
   get candle(): {
     get: (options: Candle.GetOptions) => void;
     subscribe: (options: Candle.SubscribeOptions) => void;
@@ -87,6 +112,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Position methods
+   * @returns {Object} - Position methods
+   */
   get position(): {
     get: () => void;
     getByType: (options: Position.GetPositionsByType) => void;
@@ -118,6 +147,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Instrument methods
+   * @returns {Object} - Instrument methods
+   */
   get instrument(): {
     get: (instrument_type: Instrument.instrumentType) => void;
     subscribe: (instrument_type: Instrument.instrumentType) => void;
@@ -133,6 +166,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Order methods
+   * @returns {Object} - Order methods
+   */
   get order(): {
     get: (options: Order.getOptions) => void;
     getAllStopLose: (options: Order.getAllStopLoseOptions) => void;
@@ -157,6 +194,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Leverage methods
+   * @returns {Object} - Leverage methods
+   */
   get leverage(): {
     get: (instrumentType: Instrument.instrumentType) => void;
     subscribe: (instrumentType: Instrument.instrumentType) => void;
@@ -172,6 +213,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Mood methods
+   * @returns {Object} - Mood methods
+   */
   get mood(): {
     get: (options: Mood.GetOptions) => void;
     subscribe: (options: Mood.SubscribeOptions) => void;
@@ -186,6 +231,10 @@ class ApiWs {
     };
   }
 
+  /**
+   * Indicator methods
+   * @returns {Object} - Indicator methods
+   */
   get indicator(): {
     get: (id: number) => void;
   } {
@@ -194,34 +243,66 @@ class ApiWs {
     };
   }
 
+  /**
+   * Check if websocket is connected
+   * @returns {boolean} - Is connected
+   */
   get isConnected(): boolean {
     return this.ws.isConnected;
   }
 
+  /**
+   * Connect to websocket
+   * @returns {void}
+   */
   get connect(): () => void {
     return () => this.ws.connect();
   }
 
+  /**
+   * Reconnect to websocket
+   * @returns {void}
+   */
   get reconnect(): () => void {
     return () => this.ws.reconnect();
   }
 
+  /**
+   * Close websocket connection
+   * @returns {void}
+   */
   get close(): () => void {
     return () => this.ws.close();
   }
 
+  /**
+   * Send message to websocket
+   * @param {string} callback - Message to send
+   */
   set onMessage(callback: (event: MessageEvent) => void) {
     this.ws.onMessage = (event: MessageEvent) => callback(event);
   }
 
+  /**
+   * On open event
+   * @param {string} callback - On open event
+   */
   set onOpen(callback: (event: Event) => void) {
     this.ws.onOpen = (event: Event) => callback(event);
   }
 
+  /**
+   * On error event
+   * @param {string} callback - On error event
+   */
   set onError(callback: (event: Event) => void) {
     this.ws.onError = (event: Event) => callback(event);
   }
 
+  /**
+   * On close event
+   * @param {string} callback - On close event
+   */
   set onClose(callback: (event: CloseEvent) => void) {
     this.ws.onClose = (event: CloseEvent) => callback(event);
   }

@@ -3,12 +3,19 @@ import Ws from "./src/utils/ws.ts";
 import ApiHttp from "./src/api.http.ts";
 import ApiWs from "./src/api.ws.ts";
 
+/**
+ * IqOption class
+ * @module IqOption
+ */
 class IqOption {
   declare private _http: Http;
   declare private _ws: Ws;
   declare http: ApiHttp;
   declare ws: ApiWs;
 
+  /**
+   * Constructor of IqOption class
+   */
   constructor() {
     this._http = new Http();
     this.http = new ApiHttp(this._http);

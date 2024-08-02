@@ -12,6 +12,10 @@ export type jsonResponse = {
   [key: string]: unknown;
 };
 
+/**
+ * Http class
+ * @module Http
+ */
 class Http {
   declare headers: Headers;
   declare response: Response;
@@ -27,6 +31,15 @@ class Http {
     this.response = new Response();
   }
 
+  /**
+   * @param uri string
+   * @param path string
+   * @param options RequestInit
+   * @returns {Promise<dataResponse<T>>} - Response
+   * @template T - Response data type
+   * @async @method fetch - Fetch data from iqoption api
+   * @module Http
+   */
   async fetch<T = unknown>(
     uri: string,
     path?: string,
@@ -71,6 +84,15 @@ class Http {
     return this.handleError("An unknown error occurred");
   }
 
+  /**
+   * @param message string
+   * @param code number
+   * @param data T
+   * @returns {dataResponse<T>} - Response
+   * @template T - Response data type
+   * @method handleError - Handle error response
+   * @module Http
+   */
   private handleError<T = unknown>(
     message: string,
     code = 500,
@@ -83,12 +105,25 @@ class Http {
     };
   }
 
+  /**
+   * @param data Record<string, unknown>
+   * @returns {dataResponse<T>} - Response
+   * @template T - Response data type
+   * @method handleSuccess - Handle success response
+   * @module Http
+   */
   private handleSuccess<T = unknown>(
     data?: Record<string, unknown>,
   ): dataResponse<T> {
     return { success: true, ...(data && { data: data as T }) };
   }
 
+  /**
+   * @returns {Promise<void | jsonResponse>} - Response
+   * @async @method checkJson - Check if response is json
+   * @module Http
+   * @private
+   */
   private async checkJson(): Promise<void | jsonResponse> {
     try {
       const contentType = this.response.headers.get("Content-Type")?.split(";");
@@ -103,20 +138,46 @@ class Http {
     }
   }
 
+  /**
+   * @returns {void} - Response
+   * @method checkSetCookie - Check if response has set-cookie header
+   * @module Http
+   * @private
+   */
   private checkSetCookie(): void {
     const setCookie = this.response.headers.getSetCookie();
     if (setCookie) this.addCookie(setCookie);
   }
 
+  /**
+   * @param setCookie string[]
+   * @returns {void} - Response
+   * @method addCookie - Add cookie to headers
+   * @module Http
+   * @private
+   */
   private addCookie(setCookie: string[]): void {
     setCookie.forEach((cookie) => {
       this.headers.append("cookie", cookie);
     });
   }
+  /**
+   * @returns {string} - Cookie
+   * @method getCookie - Get cookie from headers
+   * @module Http
+   * @private
+   */
   getCookie(): string {
     return this.headers.get("cookie") || "";
   }
 
+  /**
+   * @param headers Headers
+   * @returns {Record<string, string>} - Headers
+   * @method headersToObject - Convert headers to object
+   * @module Http
+   * @private
+   */
   private headersToObject(headers: Headers): Record<string, string> {
     const obj: Record<string, string> = {};
     headers.forEach((value, key) => {
@@ -125,6 +186,14 @@ class Http {
     return obj;
   }
 
+  /**
+   * @param json jsonResponse
+   * @returns {dataResponse<T>} - Response
+   * @template T - Response data type
+   * @method handleJson - Handle json response
+   * @module Http
+   * @private
+   */
   private handleJson<T = undefined>(
     json: jsonResponse,
   ): dataResponse<T> {
@@ -146,6 +215,15 @@ class Http {
     }
     return this.handleSuccess<T>(json);
   }
+
+  /**
+   * @param json jsonResponse
+   * @returns {dataResponse<T>} - Response
+   * @template T - Response data type
+   * @method handleJsonError - Handle json error response
+   * @module Http
+   * @private
+   */
   private handleJsonError<T = undefined>(json: jsonResponse): dataResponse<T> {
     delete json.isSuccessful;
     if (Array.isArray(json.message) && !json.message.length) {

@@ -10,6 +10,11 @@ import * as Event from "./services/event.http.ts";
 import * as Features from "./services/features.http.ts";
 import type { login, logout, session } from "./services/auth.type.ts";
 
+/**
+ * ApiHttp class
+ * @param http - Http instance
+ * @module ApiHttp
+ */
 class ApiHttp {
   private http: Http;
 
@@ -17,6 +22,10 @@ class ApiHttp {
     this.http = http;
   }
 
+  /**
+   * Auth methods
+   * @returns {Object} - Auth methods
+   */
   get auth(): {
     login: (payload: Auth.LoginPayload) => Promise<dataResponse<login>>;
     logout: () => Promise<dataResponse<logout>>;
@@ -29,6 +38,10 @@ class ApiHttp {
     };
   }
 
+  /**
+   * Profile methods
+   * @returns {Object} - Profile methods
+   */
   get profile(): {
     get: () => Promise<dataResponse<Profile.profile>>;
   } {
@@ -36,6 +49,10 @@ class ApiHttp {
       get: () => Profile.get(this.http),
     };
   }
+  /**
+   * Avatar methods
+   * @returns {Object} - Avatar methods
+   */
   get avatar(): {
     get: (current?: boolean) => Promise<dataResponse<Avatar.avatar>>;
   } {
@@ -43,6 +60,10 @@ class ApiHttp {
       get: (current = false) => Avatar.get(this.http, current),
     };
   }
+  /**
+   * FinInfo methods
+   * @returns {Object} - FinInfo methods
+   */
   get FinInfo(): {
     graphql: (
       payload: FinInfo.GraphqlPayload,
@@ -55,6 +76,10 @@ class ApiHttp {
       postOptions: (query: string) => FinInfo.postOptions(this.http, query),
     };
   }
+  /**
+   * Balance methods
+   * @returns {Object} - Balance methods
+   */
   get balance(): {
     post: (balanceId: number) => Promise<dataResponse<unknown>>;
   } {
@@ -62,6 +87,10 @@ class ApiHttp {
       post: (balanceId: number) => Balance.post(this.http, balanceId),
     };
   }
+  /**
+   * Core methods
+   * @returns {Object} - Core methods
+   */
   get core(): {
     getConfiguration: () => Promise<dataResponse<unknown>>;
     getCurrencies: () => Promise<dataResponse<Core.currencies>>;
@@ -81,6 +110,10 @@ class ApiHttp {
       getManager: () => Core.getManager(this.http),
     };
   }
+  /**
+   * Event methods
+   * @returns {Object} - Event methods
+   */
   get event(): {
     get: () => Promise<dataResponse<unknown>>;
   } {
@@ -88,6 +121,10 @@ class ApiHttp {
       get: () => Event.get(this.http),
     };
   }
+  /**
+   * Features methods
+   * @returns {Object} - Features methods
+   */
   get features(): {
     get: () => Promise<dataResponse<unknown>>;
   } {

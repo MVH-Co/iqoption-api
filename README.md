@@ -3,36 +3,6 @@
 This is a Typescript wrapper for the IQ Option API. It allows you to connect to the IQ Option API.
 
 
-## Usage
-
-```typescript
-import IqOption from "iqoptionapi";
-
-const identifier = "";
-const password = "";
-
-await IqOption.http.auth.login(identifier, password);
-
-// define action when message received
-IqOption.ws.onMessage = (message) => console.log(message);
-// define action when ws opened
-IqOption.ws.onOpen = () => {
-  // authenticate ws
-  console.log("Authenticating ws...");
-  IqOption.ws.auth.authenticate();
-};
-
-// connect to ws
-IqOption.ws.connect();
-
-// after 20 sec logout
-setTimeout(async () => {
-  IqOption.ws.close();
-  await IqOption.http.auth.logout();
-}, 20000);
-
-```
-
 ## Documentation
 
 Http connection is needed to get the websocket token. The websocket token is needed to connect to the websocket.

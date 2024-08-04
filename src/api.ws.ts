@@ -12,6 +12,20 @@ import * as Core from "./services/core.ws.ts";
 
 import type Ws from "./utils/ws.ts";
 
+export type {
+  Auth,
+  Balance,
+  Candle,
+  Core,
+  Indicator,
+  Instrument,
+  Leverage,
+  Mood,
+  Order,
+  Position,
+  Profile,
+};
+
 /**
  * ApiWs class
  * @param ws - Ws instance
@@ -100,11 +114,13 @@ class ApiWs {
    */
   get candle(): {
     get: (options: Candle.GetOptions) => void;
+    getFirst: (activeId: number) => void;
     subscribe: (options: Candle.SubscribeOptions) => void;
     unsubscribe: (options: Candle.UnsubscribeOptions) => void;
   } {
     return {
       get: (options: Candle.GetOptions) => Candle.get(this.ws, options),
+      getFirst: (activeId: number) => Candle.getFirst(this.ws, activeId),
       subscribe: (options: Candle.SubscribeOptions) =>
         Candle.subscribe(this.ws, options),
       unsubscribe: (options: Candle.UnsubscribeOptions) =>

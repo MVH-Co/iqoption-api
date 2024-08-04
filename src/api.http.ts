@@ -10,6 +10,8 @@ import * as Event from "./services/event.http.ts";
 import * as Features from "./services/features.http.ts";
 import type { login, logout, session } from "./services/auth.type.ts";
 
+export type { Auth, Avatar, Balance, Core, Event, Features, FinInfo, Profile };
+
 /**
  * ApiHttp class
  * @param http - Http instance

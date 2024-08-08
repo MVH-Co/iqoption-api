@@ -4,5 +4,12 @@
   "exports": "./mod.ts",
   "tasks": {
     "dev": "deno run -A --watch test.ts"
-  }
+  },
+  "exclude": [
+    ".github",
+    "tests",
+    ".gitattributes",
+    ".gitignore",
+    "deno.lock"
+  ]
 }

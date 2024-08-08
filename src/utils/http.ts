@@ -1,16 +1,4 @@
-export interface dataResponse<T = undefined> {
-  success: boolean;
-  data?: T;
-  error?: {
-    code: number;
-    message: string;
-  };
-}
-
-export type jsonResponse = {
-  code?: string;
-  [key: string]: unknown;
-};
+import type { dataResponse, jsonResponse } from "./http.type.ts";
 
 /**
  * Http class
@@ -239,3 +227,4 @@ class Http {
 }
 
 export default Http;
+export type { dataResponse };

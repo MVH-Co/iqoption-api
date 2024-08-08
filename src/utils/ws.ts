@@ -1,4 +1,4 @@
-import type Http from "./http.ts";
+import type { Http } from "./http.ts";
 
 /**
  * Ws class

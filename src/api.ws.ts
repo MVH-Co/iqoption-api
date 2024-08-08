@@ -57,19 +57,20 @@ class ApiWs {
     get: () => void;
     subscribe: () => void;
     unsubscribe: () => void;
-    availability: (userId: number) => void;
-    getUserInfo: (country: [number], userId: number) => void;
-    userProfileClient: (userId: number) => void;
+    availability: (options: Profile.AvailabilityOptions) => void;
+    getUserInfo: (options: Profile.GetUserInfoOptions) => void;
+    userProfileClient: (options: Profile.UserProfileClientOptions) => void;
   } {
     return {
       get: () => Profile.get(this.ws),
       subscribe: () => Profile.subscribe(this.ws),
       unsubscribe: () => Profile.unsubscribe(this.ws),
-      availability: (userId: number) => Profile.availability(this.ws, userId),
-      getUserInfo: (country: [number], userId: number) =>
-        Profile.getUserInfo(this.ws, country, userId),
-      userProfileClient: (userId: number) =>
-        Profile.userProfileClient(this.ws, userId),
+      availability: (options: Profile.AvailabilityOptions) =>
+        Profile.availability(this.ws, options),
+      getUserInfo: (options: Profile.GetUserInfoOptions) =>
+        Profile.getUserInfo(this.ws, options),
+      userProfileClient: (options: Profile.UserProfileClientOptions) =>
+        Profile.userProfileClient(this.ws, options),
     };
   }
 
@@ -78,12 +79,12 @@ class ApiWs {
    * @returns {Object} - Balance methods
    */
   get balance(): {
-    get: (typesIds: number[]) => void;
+    get: (options: Balance.GetOptions) => void;
     subscribe: () => void;
     unsubscribe: () => void;
   } {
     return {
-      get: (typesIds: number[]) => Balance.get(this.ws, typesIds),
+      get: (options: Balance.GetOptions) => Balance.get(this.ws, options),
       subscribe: () => Balance.subscribe(this.ws),
       unsubscribe: () => Balance.unsubscribe(this.ws),
     };
@@ -96,13 +97,13 @@ class ApiWs {
   get core(): {
     getCommissions: () => void;
     setOptions: () => void;
-    heartbeat: (beat: number, localTime: number) => void;
+    heartbeat: (options: Core.HeartbeatOptions) => void;
   } {
     return {
       getCommissions: () => Core.getCommissions(this.ws),
       setOptions: () => Core.setOptions(this.ws),
-      heartbeat: (beat: number, localTime: number) =>
-        Core.heartbeat(this.ws, beat, localTime),
+      heartbeat: (options: Core.HeartbeatOptions) =>
+        Core.heartbeat(this.ws, options),
     };
   }
 
@@ -112,13 +113,14 @@ class ApiWs {
    */
   get candle(): {
     get: (options: Candle.GetOptions) => void;
-    getFirst: (activeId: number) => void;
+    getFirst: (options: Candle.GetFirstOptions) => void;
     subscribe: (options: Candle.SubscribeOptions) => void;
     unsubscribe: (options: Candle.UnsubscribeOptions) => void;
   } {
     return {
       get: (options: Candle.GetOptions) => Candle.get(this.ws, options),
-      getFirst: (activeId: number) => Candle.getFirst(this.ws, activeId),
+      getFirst: (options: Candle.GetFirstOptions) =>
+        Candle.getFirst(this.ws, options),
       subscribe: (options: Candle.SubscribeOptions) =>
         Candle.subscribe(this.ws, options),
       unsubscribe: (options: Candle.UnsubscribeOptions) =>
@@ -133,31 +135,34 @@ class ApiWs {
   get position(): {
     get: () => void;
     getByType: (options: Position.GetPositionsByType) => void;
-    getById: (positionId: number) => void;
-    close: (positionId: number) => void;
+    getById: (options: Position.GetByIDOptions) => void;
+    close: (options: Position.CloseByIdOptions) => void;
     getHistory: (options: Position.GetHistoryOptions) => void;
-    subscribeToIds: (ids: string[]) => void;
+    subscribeToIds: (options: Position.SubscribeToIdsOptions) => void;
     subscribe: (options: Position.SubscribeOptions) => void;
     unsubscribe: (options: Position.UnsubscribeOptions) => void;
     subscribeState: () => void;
-    update: (positionId: number, stop: number) => void;
+    update: (options: Position.UpdateOptions) => void;
   } {
     return {
       get: () => Position.get(this.ws),
       getByType: (options: Position.GetPositionsByType) =>
         Position.getByType(this.ws, options),
-      getById: (positionId: number) => Position.getById(this.ws, positionId),
-      close: (positionId: number) => Position.close(this.ws, positionId),
+      getById: (options: Position.GetByIDOptions) =>
+        Position.getById(this.ws, options),
+      close: (options: Position.CloseByIdOptions) =>
+        Position.close(this.ws, options),
       getHistory: (options: Position.GetHistoryOptions) =>
         Position.getHistory(this.ws, options),
-      subscribeToIds: (ids: string[]) => Position.subscribeToIds(this.ws, ids),
+      subscribeToIds: (options: Position.SubscribeToIdsOptions) =>
+        Position.subscribeToIds(this.ws, options),
       subscribe: (options: Position.SubscribeOptions) =>
         Position.subscribe(this.ws, options),
       unsubscribe: (options: Position.UnsubscribeOptions) =>
         Position.unsubscribe(this.ws, options),
       subscribeState: () => Position.subscribeState(this.ws),
-      update: (positionId: number, stop: number) =>
-        Position.update(this.ws, positionId, stop),
+      update: (options: Position.UpdateOptions) =>
+        Position.update(this.ws, options),
     };
   }
 
@@ -166,17 +171,16 @@ class ApiWs {
    * @returns {Object} - Instrument methods
    */
   get instrument(): {
-    get: (instrument_type: Instrument.instrumentType) => void;
-    subscribe: (instrument_type: Instrument.instrumentType) => void;
-    unsubscribe: (instrument_type: Instrument.instrumentType) => void;
+    get: (options: Instrument.GetOptions) => void;
+    subscribe: (options: Instrument.SubscribeOptions) => void;
+    unsubscribe: (options: Instrument.SubscribeOptions) => void;
   } {
     return {
-      get: (instrument_type: Instrument.instrumentType) =>
-        Instrument.get(this.ws, instrument_type),
-      subscribe: (instrument_type: Instrument.instrumentType) =>
-        Instrument.subscribe(this.ws, instrument_type),
-      unsubscribe: (instrument_type: Instrument.instrumentType) =>
-        Instrument.unsubscribe(this.ws, instrument_type),
+      get: (options: Instrument.GetOptions) => Instrument.get(this.ws, options),
+      subscribe: (options: Instrument.SubscribeOptions) =>
+        Instrument.subscribe(this.ws, options),
+      unsubscribe: (options: Instrument.SubscribeOptions) =>
+        Instrument.unsubscribe(this.ws, options),
     };
   }
 
@@ -187,7 +191,7 @@ class ApiWs {
   get order(): {
     get: (options: Order.getOptions) => void;
     getAllStopLose: (options: Order.getAllStopLoseOptions) => void;
-    cancelStopLose: (orderId: number) => void;
+    cancelStopLose: (options: Order.CancelStopLoseOptions) => void;
     subscribe: (options: Order.SubscribeOptions) => void;
     place: (body: Order.placeOrderParams) => void;
     subscribeChanged: (options: Order.ChangedOptions) => void;
@@ -197,8 +201,8 @@ class ApiWs {
       get: (options: Order.getOptions) => Order.get(this.ws, options),
       getAllStopLose: (options: Order.getAllStopLoseOptions) =>
         Order.getAllStopLose(this.ws, options),
-      cancelStopLose: (orderId: number) =>
-        Order.cancelStopLose(this.ws, orderId),
+      cancelStopLose: (options: Order.CancelStopLoseOptions) =>
+        Order.cancelStopLose(this.ws, options),
       subscribe: (options: Order.SubscribeOptions) =>
         Order.subscribe(this.ws, options),
       place: (body: Order.placeOrderParams) => Order.place(this.ws, body),
@@ -213,17 +217,16 @@ class ApiWs {
    * @returns {Object} - Leverage methods
    */
   get leverage(): {
-    get: (instrumentType: Instrument.instrumentType) => void;
-    subscribe: (instrumentType: Instrument.instrumentType) => void;
-    unsubscribe: (instrumentType: Instrument.instrumentType) => void;
+    get: (options: Leverage.GetOptions) => void;
+    subscribe: (options: Leverage.GetOptions) => void;
+    unsubscribe: (options: Leverage.GetOptions) => void;
   } {
     return {
-      get: (instrumentType: Instrument.instrumentType) =>
-        Leverage.get(this.ws, instrumentType),
-      subscribe: (instrumentType: Instrument.instrumentType) =>
-        Leverage.subscribe(this.ws, instrumentType),
-      unsubscribe: (instrumentType: Instrument.instrumentType) =>
-        Leverage.unsubscribe(this.ws, instrumentType),
+      get: (options: Leverage.GetOptions) => Leverage.get(this.ws, options),
+      subscribe: (options: Leverage.GetOptions) =>
+        Leverage.subscribe(this.ws, options),
+      unsubscribe: (options: Leverage.GetOptions) =>
+        Leverage.unsubscribe(this.ws, options),
     };
   }
 
@@ -250,10 +253,10 @@ class ApiWs {
    * @returns {Object} - Indicator methods
    */
   get indicator(): {
-    get: (id: number) => void;
+    get: (options: Indicator.GetOptions) => void;
   } {
     return {
-      get: (id: number) => Indicator.get(this.ws, id),
+      get: (options: Indicator.GetOptions) => Indicator.get(this.ws, options),
     };
   }
 

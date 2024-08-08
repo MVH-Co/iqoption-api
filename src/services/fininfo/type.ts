@@ -5,8 +5,8 @@ export type GraphqlPayload = {
 };
 
 export type PostPayload = {
-  operationName: string;
-  variables: Record<never, never>;
+  operationName?: string;
+  variables?: Record<never, never>;
   query: string;
 };
 

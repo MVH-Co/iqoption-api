@@ -56,10 +56,10 @@ class ApiHttp {
    * @returns {Object} - Avatar methods
    */
   get avatar(): {
-    get: (current?: boolean) => Promise<dataResponse<Avatar.avatar>>;
+    get: (payload?: Avatar.GetPayload) => Promise<dataResponse<Avatar.avatar>>;
   } {
     return {
-      get: (current = false) => Avatar.get(this.http, current),
+      get: (payload?: Avatar.GetPayload) => Avatar.get(this.http, payload),
     };
   }
   /**
@@ -70,12 +70,15 @@ class ApiHttp {
     graphql: (
       payload: FinInfo.GraphqlPayload,
     ) => Promise<dataResponse<unknown>>;
-    postOptions: (query: string) => Promise<dataResponse<unknown>>;
+    postOptions: (
+      payload: FinInfo.PostPayload,
+    ) => Promise<dataResponse<unknown>>;
   } {
     return {
       graphql: (payload: FinInfo.GraphqlPayload) =>
         FinInfo.graphql(this.http, payload),
-      postOptions: (query: string) => FinInfo.postOptions(this.http, query),
+      postOptions: (payload: FinInfo.PostPayload) =>
+        FinInfo.postOptions(this.http, payload),
     };
   }
   /**
@@ -83,10 +86,10 @@ class ApiHttp {
    * @returns {Object} - Balance methods
    */
   get balance(): {
-    post: (balanceId: number) => Promise<dataResponse<unknown>>;
+    post: (payload: Balance.PostPayload) => Promise<dataResponse<unknown>>;
   } {
     return {
-      post: (balanceId: number) => Balance.post(this.http, balanceId),
+      post: (payload: Balance.PostPayload) => Balance.post(this.http, payload),
     };
   }
   /**

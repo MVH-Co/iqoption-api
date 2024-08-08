@@ -198,3 +198,21 @@ export type GetByIDOptions = {
 export type CloseByIdOptions = {
   position_id: number;
 };
+
+export type UpdateOptions = {
+  position_id: number;
+  stop_lose_kind?: string | "percent";
+  stop_lose_value: number;
+  take_profit_kind?: string | "percent";
+  take_profit_value?: number | null;
+  use_trail_stop?: true;
+  extra?: {
+    stop_lose_kind?: string | "percent";
+    take_profit_kind?: string | "percent";
+  };
+};
+
+export type SubscribeToIdsOptions = {
+  ids: string[];
+  frequency?: number | "frequent";
+};

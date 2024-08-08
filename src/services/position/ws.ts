@@ -5,7 +5,9 @@ import type {
   GetHistoryOptions,
   GetPositionsByType,
   SubscribeOptions,
+  SubscribeToIdsOptions,
   UnsubscribeOptions,
+  UpdateOptions,
 } from "./type.ts";
 export type * from "./type.ts";
 
@@ -126,15 +128,15 @@ export function getHistory(
  * @param stop
  * @returns
  */
-export function subscribeToIds(ws: Ws, ids: string[]): void {
+export function subscribeToIds(ws: Ws, options: SubscribeToIdsOptions): void {
   ws.send({
     name: "sendMessage",
     msg: {
       name: "subscribe-positions",
       version: "1.0",
       body: {
-        frequency: "frequent",
-        ids,
+        ...options,
+        frequency: options.frequency ?? "frequent",
       },
     },
     request_id: `${ws.messageId}`,
@@ -175,22 +177,23 @@ export function subscribeState(ws: Ws): void {
   });
 }
 
-export function update(ws: Ws, position: number, value: number): void {
+export function update(ws: Ws, options: UpdateOptions): void {
   ws.send({
     name: "sendMessage",
     msg: {
       name: "change-tpsl",
       version: "2.0",
       body: {
-        position_id: position,
-        stop_lose_kind: "percent",
-        stop_lose_value: -value,
-        take_profit_kind: "percent",
-        take_profit_value: null,
-        use_trail_stop: true,
+        ...options,
+        position_id: options.position_id,
+        stop_lose_kind: options.stop_lose_kind ?? "percent",
+        stop_lose_value: -options.stop_lose_value,
+        take_profit_kind: options.take_profit_kind ?? "percent",
+        take_profit_value: options.take_profit_value ?? null,
+        use_trail_stop: options.use_trail_stop ?? true,
         extra: {
-          stop_lose_kind: "percent",
-          take_profit_kind: "percent",
+          stop_lose_kind: options.extra?.stop_lose_kind ?? "percent",
+          take_profit_kind: options.extra?.take_profit_kind ?? "percent",
         },
       },
       request_id: `${ws.messageId}`,

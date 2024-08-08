@@ -28,20 +28,25 @@ export type LoginPayload = {
   password: string;
 };
 
-export type check2FAPayload = {
+export type Check2FAPayload = {
   code: string;
   token: string;
 };
 
-export type set2FAMethodPayload = {
+export type Set2FAMethodPayload = {
   method: "push" | "email" | "sms";
   enabled: boolean;
   token: string;
 };
 
-export type authenticate = {
+export type Authenticate = {
   name: "authenticated";
   msg: boolean;
   client_session_id: string;
   request_id: string;
+};
+
+export type Ask2FAPayload = {
+  method: "sms" | "push" | "email";
+  token: string;
 };

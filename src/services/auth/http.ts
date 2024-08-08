@@ -1,12 +1,13 @@
 import type Http from "../../utils/http.ts";
 import type { dataResponse } from "../../utils/http.ts";
 import type {
-  check2FAPayload,
+  Ask2FAPayload,
+  Check2FAPayload,
   login,
   LoginPayload,
   logout,
   session,
-  set2FAMethodPayload,
+  Set2FAMethodPayload,
 } from "./type.ts";
 export type * from "./type.ts";
 
@@ -20,9 +21,8 @@ export function login(
   http: Http,
   payload: LoginPayload,
 ): Promise<dataResponse<login>> {
-  const { identifier, password } = payload;
   const uri = "/v2/login";
-  const body = JSON.stringify({ identifier, password });
+  const body = JSON.stringify(payload);
   return http.fetch(uri, path, { method: "POST", body });
 }
 
@@ -36,10 +36,10 @@ export function session(http: Http): Promise<dataResponse<session>> {
   return http.fetch(uri, path);
 }
 
-export function ask2FA(http: Http, payload: {
-  method: "sms" | "push" | "email";
-  token: string;
-}): Promise<dataResponse<unknown>> {
+export function ask2FA(
+  http: Http,
+  payload: Ask2FAPayload,
+): Promise<dataResponse<unknown>> {
   const uri = "/v2/verify/2fa";
   const body = JSON.stringify(payload);
   return http.fetch(uri, path, { method: "POST", body });
@@ -47,7 +47,7 @@ export function ask2FA(http: Http, payload: {
 
 export function check2FA(
   http: Http,
-  payload: check2FAPayload,
+  payload: Check2FAPayload,
 ): Promise<dataResponse<unknown>> {
   const uri = "/v2/verify/2fa";
   const body = JSON.stringify(payload);
@@ -61,7 +61,7 @@ export function get2FAMethod(http: Http): Promise<dataResponse<unknown>> {
 
 export function set2FAMethod(
   http: Http,
-  payload: set2FAMethodPayload,
+  payload: Set2FAMethodPayload,
 ): Promise<dataResponse<unknown>> {
   const uri = "/v2/change/2fa";
   const body = JSON.stringify(payload);

@@ -1,14 +1,14 @@
 import * as Auth from "./services/auth/ws.ts";
-import * as Profile from "./services/profile.ws.ts";
-import * as Position from "./services/position.ws.ts";
-import * as Instrument from "./services/instrument.ws.ts";
-import * as Order from "./services/order.ws.ts";
-import * as Leverage from "./services/leverage.ws.ts";
-import * as Mood from "./services/mood.ws.ts";
-import * as Indicator from "./services/indicator.ws.ts";
-import * as Candle from "./services/candle.ws.ts";
-import * as Balance from "./services/balance.ws.ts";
-import * as Core from "./services/core.ws.ts";
+import * as Profile from "./services/profile/ws.ts";
+import * as Position from "./services/position/ws.ts";
+import * as Instrument from "./services/instrument/ws.ts";
+import * as Order from "./services/order/ws.ts";
+import * as Leverage from "./services/leverage/ws.ts";
+import * as Mood from "./services/mood/ws.ts";
+import * as Indicator from "./services/indicator/ws.ts";
+import * as Candle from "./services/candle/ws.ts";
+import * as Balance from "./services/balance/ws.ts";
+import * as Core from "./services/core/ws.ts";
 import type Ws from "./utils/ws.ts";
 
 export type {

@@ -21,7 +21,7 @@ jobs:
        - name: check
          uses: actions/checkout@v4
        - name: Install Deno
-         uses: denoland/setup-deno@v1.3
+         uses: denoland/setup-deno@v1
        - name: format
          run: deno fmt
        - name: publish

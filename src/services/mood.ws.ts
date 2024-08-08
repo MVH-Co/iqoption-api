@@ -1,14 +1,9 @@
 import type Ws from "../utils/ws.ts";
-export type * from "./mood.type.ts";
-
-export type SubscribeOptions = {
-  instrument: string;
-  asset_id: number;
-};
-
-export type GetOptions = SubscribeOptions;
-
-export type UnsubscribeOptions = SubscribeOptions;
+import type {
+  GetOptions,
+  SubscribeOptions,
+  UnsubscribeOptions,
+} from "./mood.type.ts";
 
 export function get(
   ws: Ws,

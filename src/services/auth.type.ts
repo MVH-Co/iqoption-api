@@ -23,6 +23,22 @@ export type session = {
   user_agent: string;
 };
 
+export type LoginPayload = {
+  identifier: string;
+  password: string;
+};
+
+export type check2FAPayload = {
+  code: string;
+  token: string;
+};
+
+export type set2FAMethodPayload = {
+  method: "push" | "email" | "sms";
+  enabled: boolean;
+  token: string;
+};
+
 export type authenticate = {
   name: "authenticated";
   msg: boolean;

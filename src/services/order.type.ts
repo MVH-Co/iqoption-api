@@ -63,3 +63,23 @@ export type order = {
   time_in_force_date: null | unknown;
   last_index: number;
 };
+
+export type getAllStopLoseOptions = {
+  user_balance_id: number;
+  instrument_type: string;
+};
+
+export type getOptions = {
+  user_balance_id: number;
+  kind: null | "deferred";
+};
+
+export type ChangedOptions = {
+  user_id: number;
+  instrument_type: string;
+};
+
+export type SubscribeOptions = {
+  frequency: string;
+  ids: string[];
+};

@@ -27,3 +27,5 @@ class IqOption {
 const iqOption: IqOption = new IqOption();
 
 export default iqOption;
+
+export type { dataResponse } from "./src/utils/http.type.ts";

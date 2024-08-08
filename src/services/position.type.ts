@@ -166,3 +166,27 @@ export type rawEvent = positionCommon & {
   swap_enrolled: number;
   count_realized: number;
 };
+
+export type GetPositionsByType = {
+  instrument_types: string[] | "all";
+  user_balance_id: number;
+  limit?: number;
+  offset?: number;
+};
+
+export type GetHistoryOptions = {
+  instrument_type: number;
+  user_balance_id: number;
+  limit?: number;
+  offset?: number;
+  start?: number;
+  end?: number;
+};
+
+export type SubscribeOptions = {
+  userId: number;
+  userBalanceId: number;
+  instrumentType: string;
+};
+
+export type UnsubscribeOptions = SubscribeOptions;

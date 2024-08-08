@@ -2,7 +2,6 @@ import type Http from "../utils/http.ts";
 import type { dataResponse } from "../utils/http.ts";
 import type { contactInfo, countries, currencies } from "./core.type.ts";
 import type { profile } from "./profile.type.ts";
-export type * from "./core.type.ts";
 
 export function getCurrencies(http: Http): Promise<dataResponse<currencies>> {
   const uri = "/v5/currencies";

@@ -1,25 +1,15 @@
 import type Http from "../utils/http.ts";
 import type { dataResponse } from "../utils/http.ts";
-import type { login, logout, session } from "./auth.type.ts";
-export type * from "./auth.type.ts";
+import type {
+  check2FAPayload,
+  login,
+  LoginPayload,
+  logout,
+  session,
+  set2FAMethodPayload,
+} from "./auth.type.ts";
 
 const path = "auth";
-
-export type LoginPayload = {
-  identifier: string;
-  password: string;
-};
-
-export type check2FAPayload = {
-  code: string;
-  token: string;
-};
-
-export type set2FAMethodPayload = {
-  method: "push" | "email" | "sms";
-  enabled: boolean;
-  token: string;
-};
 
 /**
  * @param payload token if 2FA or identifier and password else

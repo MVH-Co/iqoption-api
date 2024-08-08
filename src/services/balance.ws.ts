@@ -1,5 +1,5 @@
 import type Ws from "../utils/ws.ts";
-export type * from "./balance.type.ts";
+
 /**
  * @description Get balances for given ids
  * @param types_ids : number[] = 1 - Real, 4 - Demo

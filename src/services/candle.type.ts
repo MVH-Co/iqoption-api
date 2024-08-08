@@ -56,3 +56,17 @@ export type candles = { candles: candle[] };
 //   "active_id": number;
 //   "split_normalization": boolean;
 // };
+
+export type GetOptions = {
+  active_id: number;
+  from_id: number;
+  to_id: number;
+  size: number;
+};
+
+export type SubscribeOptions = {
+  active_id?: number;
+  size: number | "all";
+};
+
+export type UnsubscribeOptions = SubscribeOptions;

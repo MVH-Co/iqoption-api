@@ -1,6 +1,5 @@
 import type Ws from "../utils/ws.ts";
 import type { instrumentType } from "./instrument.type.ts";
-export type * from "./instrument.type.ts";
 
 export function get(ws: Ws, type: instrumentType): void {
   ws.send({

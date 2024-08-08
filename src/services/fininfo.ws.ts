@@ -1,5 +1,4 @@
 import type Ws from "../utils/ws.ts";
-export type * from "./fininfo.type.ts";
 
 export function get(ws: Ws, active: number) {
   ws.send({

@@ -1,6 +1,5 @@
 import type Http from "../utils/http.ts";
 import type { dataResponse } from "../utils/http.ts";
-export type * from "./fininfo.type.ts";
 
 const path = "fininfo";
 

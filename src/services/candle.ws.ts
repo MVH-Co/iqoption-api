@@ -1,19 +1,9 @@
 import type Ws from "../utils/ws.ts";
-export type * from "./candle.type.ts";
-
-export type GetOptions = {
-  active_id: number;
-  from_id: number;
-  to_id: number;
-  size: number;
-};
-
-export type SubscribeOptions = {
-  active_id?: number;
-  size: number | "all";
-};
-
-export type UnsubscribeOptions = SubscribeOptions;
+import type {
+  GetOptions,
+  SubscribeOptions,
+  UnsubscribeOptions,
+} from "./candle.type.ts";
 
 export function get(
   ws: Ws,

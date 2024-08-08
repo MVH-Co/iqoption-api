@@ -1,29 +1,10 @@
 import type Ws from "../utils/ws.ts";
-export type * from "./position.type.ts";
-
-export type GetPositionsByType = {
-  instrument_types: string[] | "all";
-  user_balance_id: number;
-  limit?: number;
-  offset?: number;
-};
-
-export type GetHistoryOptions = {
-  instrument_type: number;
-  user_balance_id: number;
-  limit?: number;
-  offset?: number;
-  start?: number;
-  end?: number;
-};
-
-export type SubscribeOptions = {
-  userId: number;
-  userBalanceId: number;
-  instrumentType: string;
-};
-
-export type UnsubscribeOptions = SubscribeOptions;
+import type {
+  GetHistoryOptions,
+  GetPositionsByType,
+  SubscribeOptions,
+  UnsubscribeOptions,
+} from "./position.type.ts";
 
 export function get(ws: Ws // body?: {
   //   position_id?: number;

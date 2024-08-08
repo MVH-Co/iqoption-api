@@ -1,7 +1,21 @@
 {
   "name": "@mvh/iqoption",
-  "version": "0.1.4",
-  "exports": "./mod.ts",
+  "version": "0.1.5",
+  "exports": {
+    ".": "./mod.ts",
+    "./auth": "./src/services/auth.type.ts",
+    "./avatar": "./src/services/avatar.type.ts",
+    "./balance": "./src/services/balance.type.ts",
+    "./billing": "./src/services/billing.type.ts",
+    "./candle": "./src/services/candle.type.ts",
+    "./instrument": "./src/services/instrument.type.ts",
+    "./indicator": "./src/services/indicator.type.ts",
+    "./leverage": "./src/services/leverage.type.ts",
+    "./position": "./src/services/position.type.ts",
+    "./profile": "./src/services/profile.type.ts",
+    "./order": "./src/services/order.type.ts",
+    "./mood": "./src/services/mood.type.ts"
+  },
   "tasks": {
     "dev": "deno run -A --watch test.ts"
   },

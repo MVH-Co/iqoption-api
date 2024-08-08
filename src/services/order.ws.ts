@@ -1,26 +1,11 @@
-import type { placeOrderParams } from "./order.type.ts";
+import type {
+  ChangedOptions,
+  getAllStopLoseOptions,
+  getOptions,
+  placeOrderParams,
+  SubscribeOptions,
+} from "./order.type.ts";
 import type Ws from "../utils/ws.ts";
-export type * from "./order.type.ts";
-
-export type getAllStopLoseOptions = {
-  user_balance_id: number;
-  instrument_type: string;
-};
-
-export type getOptions = {
-  user_balance_id: number;
-  kind: null | "deferred";
-};
-
-export type ChangedOptions = {
-  user_id: number;
-  instrument_type: string;
-};
-
-export type SubscribeOptions = {
-  frequency: string;
-  ids: string[];
-};
 
 export function cancelStopLose(
   ws: Ws,
@@ -97,7 +82,7 @@ export function place(
   });
 }
 
-export function changed(
+export function subscribeChanged(
   ws: Ws,
   options: ChangedOptions,
 ): void {
@@ -139,5 +124,27 @@ export function subscribe(
       version: "1.0",
     },
     request_id: `s_${ws.subscribeId}`,
+  });
+}
+
+export function unsubscribe(ws: Ws, request_id: string): void {
+  ws.send({
+    name: "unsubscribeMessage",
+    msg: {
+      name: "subscribe-order",
+      version: "1.0",
+    },
+    request_id,
+  });
+}
+
+export function unsubscribeChanged(ws: Ws, request_id: string): void {
+  ws.send({
+    name: "unsubscribeMessage",
+    msg: {
+      name: "order-changed",
+      version: "2.0",
+    },
+    request_id,
   });
 }

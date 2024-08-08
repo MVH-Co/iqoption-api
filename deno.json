@@ -4,7 +4,7 @@
   "exports": {
     ".": "./mod.ts",
     "./authtype": "./src/services/auth/type.ts",
-    "./auth": "./src/services/auth.ts",
+    "./auth": "./src/services/auth/mod.ts",
     "./avatar": "./src/services/avatar.type.ts",
     "./balance": "./src/services/balance.type.ts",
     "./candle": "./src/services/candle.type.ts",

@@ -4,6 +4,7 @@ import type {
   SubscribeOptions,
   UnsubscribeOptions,
 } from "./candle.type.ts";
+export type * from "./candle.type.ts";
 
 export function get(
   ws: Ws,

@@ -1,4 +1,4 @@
-import * as Auth from "./services/auth.ws.ts";
+import * as Auth from "./services/auth/ws.ts";
 import * as Profile from "./services/profile.ws.ts";
 import * as Position from "./services/position.ws.ts";
 import * as Instrument from "./services/instrument.ws.ts";
@@ -9,7 +9,6 @@ import * as Indicator from "./services/indicator.ws.ts";
 import * as Candle from "./services/candle.ws.ts";
 import * as Balance from "./services/balance.ws.ts";
 import * as Core from "./services/core.ws.ts";
-
 import type Ws from "./utils/ws.ts";
 
 export type {
@@ -25,7 +24,6 @@ export type {
   Position,
   Profile,
 };
-
 /**
  * ApiWs class
  * @param ws - Ws instance
@@ -192,7 +190,7 @@ class ApiWs {
     cancelStopLose: (orderId: number) => void;
     subscribe: (options: Order.SubscribeOptions) => void;
     place: (body: Order.placeOrderParams) => void;
-    changed: (options: Order.ChangedOptions) => void;
+    subscribeChanged: (options: Order.ChangedOptions) => void;
     subscribeState: () => void;
   } {
     return {
@@ -204,8 +202,8 @@ class ApiWs {
       subscribe: (options: Order.SubscribeOptions) =>
         Order.subscribe(this.ws, options),
       place: (body: Order.placeOrderParams) => Order.place(this.ws, body),
-      changed: (options: Order.ChangedOptions) =>
-        Order.changed(this.ws, options),
+      subscribeChanged: (options: Order.ChangedOptions) =>
+        Order.subscribeChanged(this.ws, options),
       subscribeState: () => Order.subscribeState(this.ws),
     };
   }

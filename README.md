@@ -1,17 +1,20 @@
 # IQ Option Api Wrapper
 
-This is a Typescript wrapper for the IQ Option API. It allows you to connect to the IQ Option API.
-
+This is a Typescript wrapper for the IQ Option API. It allows you to connect to
+the IQ Option API.
 
 ## Documentation
 
-Http connection is needed to get the websocket token. The websocket token is needed to connect to the websocket.
+Http connection is needed to get the websocket token. The websocket token is
+needed to connect to the websocket.
 
 When the websocket is connected, you can listen to messages and send messages.
 
-I recommend to use the `IqOption.ws.onMessage` and `IqOption.ws.onOpen` to define actions when messages are received and when the websocket is opened.
+I recommend to use the `IqOption.ws.onMessage` and `IqOption.ws.onOpen` to
+define actions when messages are received and when the websocket is opened.
 
-A good practice is to create an handler to run the actions by received message name.
+A good practice is to create an handler to run the actions by received message
+name.
 
 An other can be to create a propers and adapters class to adapte the messages.
 

@@ -5,6 +5,7 @@ import type {
   SubscribeOptions,
   UnsubscribeOptions,
 } from "./position.type.ts";
+export type * from "./position.type.ts";
 
 export function get(ws: Ws // body?: {
   //   position_id?: number;

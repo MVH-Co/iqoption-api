@@ -1,13 +1,9 @@
 import type Http from "../utils/http.ts";
 import type { dataResponse } from "../utils/http.ts";
+import type { GraphqlPayload } from "./fininfo.type.ts";
+export type * from "./fininfo.type.ts";
 
 const path = "fininfo";
-
-export type GraphqlPayload = {
-  operationName: string;
-  variables: Record<never, never>;
-  query: string;
-};
 
 export function graphql(
   http: Http,

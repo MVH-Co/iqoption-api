@@ -36,10 +36,10 @@ export function getList(
   timestamp: number,
 ): Record<string, unknown> {
   return {
-    name: 'get-strike-list',
-    version: '4.0',
+    name: "get-strike-list",
+    version: "4.0",
     body: {
-      type: 'cfd',
+      type: "cfd",
       underlying: name,
       expiration: timestamp * 1000,
       period: duration * 60,

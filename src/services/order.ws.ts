@@ -6,6 +6,7 @@ import type {
   SubscribeOptions,
 } from "./order.type.ts";
 import type Ws from "../utils/ws.ts";
+export type * from "./order.type.ts";
 
 export function cancelStopLose(
   ws: Ws,

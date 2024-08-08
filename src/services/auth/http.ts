@@ -1,5 +1,5 @@
-import type Http from "../utils/http.ts";
-import type { dataResponse } from "../utils/http.ts";
+import type Http from "../../utils/http.ts";
+import type { dataResponse } from "../../utils/http.ts";
 import type {
   check2FAPayload,
   login,
@@ -7,7 +7,8 @@ import type {
   logout,
   session,
   set2FAMethodPayload,
-} from "./auth.type.ts";
+} from "./type.ts";
+export type * from "./type.ts";
 
 const path = "auth";
 

@@ -1,6 +1,6 @@
 import type Http from "./utils/http.ts";
 import type { dataResponse } from "./utils/http.ts";
-import * as Auth from "./services/auth.http.ts";
+import * as Auth from "./services/auth/http.ts";
 import * as Profile from "./services/profile.http.ts";
 import * as Avatar from "./services/avatar.http.ts";
 import * as FinInfo from "./services/fininfo.http.ts";
@@ -8,7 +8,7 @@ import * as Balance from "./services/balance.http.ts";
 import * as Core from "./services/core.http.ts";
 import * as Event from "./services/event.http.ts";
 import * as Features from "./services/features.http.ts";
-import type { login, logout, session } from "./services/auth.type.ts";
+import type { login, logout, session } from "./services/auth/type.ts";
 
 export type { Auth, Avatar, Balance, Core, Event, Features, FinInfo, Profile };
 

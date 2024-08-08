@@ -1,4 +1,5 @@
-export type dataWsResponse = {};
+export type dataWsResponse = undefined;
+//{};
 
 // --- WS TYPES ---
 export type iqMessage<T = Record<never, never>> = {

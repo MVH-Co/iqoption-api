@@ -1,4 +1,5 @@
 import type Ws from "../utils/ws.ts";
+export type * from "./profile.type.ts";
 
 export function get(ws: Ws): void {
   ws.send({

@@ -1,5 +1,6 @@
 import type Ws from "../utils/ws.ts";
 import type { instrumentType } from "./instrument.type.ts";
+export type * from "./core.type.ts";
 
 // export function get(name: string) {
 //   return {

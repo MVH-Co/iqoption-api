@@ -1,4 +1,5 @@
 import type { dataResponse, jsonResponse } from "./http.type.ts";
+export type * from "./http.type.ts";
 
 /**
  * Http class
@@ -227,4 +228,3 @@ class Http {
 }
 
 export default Http;
-export type { dataResponse };

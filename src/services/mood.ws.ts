@@ -1,4 +1,6 @@
 import type Ws from "../utils/ws.ts";
+export type * from "./mood.type.ts";
+
 import type {
   GetOptions,
   SubscribeOptions,

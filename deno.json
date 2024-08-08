@@ -1,6 +1,6 @@
 {
   "name": "@mvh/iqoption",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "exports": "./mod.ts",
   "tasks": {
     "dev": "deno run -A --watch test.ts"

@@ -324,6 +324,30 @@ class ApiWs {
   set onClose(callback: (event: CloseEvent) => void) {
     this.ws.onClose = (event: CloseEvent) => callback(event);
   }
+
+  get sendedMessages(): string[] {
+    return this.ws.sendedMessages;
+  }
+
+  get messages(): string[] {
+    return this.ws.messages;
+  }
+
+  get sendedSubscribe(): string[] {
+    return this.ws.sendedSubscribe;
+  }
+
+  get messageId(): number {
+    return this.ws.messageId;
+  }
+
+  get subscribeId(): number {
+    return this.ws.subscribeId;
+  }
+
+  get lastId(): number {
+    return this.ws.lastId;
+  }
 }
 
 export default ApiWs;

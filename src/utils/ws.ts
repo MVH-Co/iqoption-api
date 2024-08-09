@@ -17,6 +17,7 @@ class Ws {
   sendedMessages: string[] = [];
   messages: string[] = [];
   sendedSubscribe: string[] = [];
+  lastId = 0;
   messageId = 0;
   subscribeId = 0;
   isConnected = false;

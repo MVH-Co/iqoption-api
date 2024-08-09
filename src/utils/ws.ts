@@ -82,6 +82,8 @@ class Ws {
     this.sendedMessages = [];
     this.sendedSubscribe = [];
     this.messageId = 0;
+    this.lastId = 0;
+    this.subscribeId = 0;
     this.connect();
   }
 
@@ -97,6 +99,10 @@ class Ws {
     this.messages = [];
     this.sendedMessages = [];
     this.sendedSubscribe = [];
+    this.messageId = 0;
+    this.lastId = 0;
+    this.subscribeId = 0;
+
     this.messageId = 0;
   }
 

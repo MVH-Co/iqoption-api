@@ -348,6 +348,10 @@ class ApiWs {
   get lastId(): number {
     return this.ws.lastId;
   }
+
+  set lastId(value: number) {
+    this.ws.lastId = value;
+  }
 }
 
 export default ApiWs;

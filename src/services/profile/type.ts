@@ -17,7 +17,7 @@ export type profile = {
   address: string;
   auth_two_factor: boolean;
   avatar: string;
-  balance: balance;
+  balance: number;
   balance_id: number;
   balance_type: number;
   balances: balance[];
@@ -31,7 +31,7 @@ export type profile = {
   client_category_id: number;
   company_id: number;
   confirmation_required: number;
-  confirmed_phones: [];
+  confirmed_phones: string[];
   country_id: number;
   created: number;
   currency: string;
@@ -49,8 +49,15 @@ export type profile = {
     created: null;
     expires: null;
   };
-  functions: [];
-  gender: string;
+  functions: {
+    popup_ids: { [key: string]: string };
+    ext_fields: Record<never, never>;
+    is_vip_mode: number;
+    is_bonus_block: number;
+    is_no_currency_change: number;
+    is_trading_bonus_block: number;
+  };
+  gender: "male" | string;
   group_id: number;
   id: number;
   infeed: number;
@@ -93,9 +100,9 @@ export type profile = {
   };
   name: string;
   nationality: string;
-  need_phone_confirmation: null;
+  need_phone_confirmation: boolean;
   new_email: string;
-  nickname: null;
+  nickname: string;
   personal_data_policy: personal_data_policy;
   phone: string;
   popup: [];
@@ -114,7 +121,7 @@ export type profile = {
   trial: boolean;
   tz: string;
   tz_offset: number;
-  user_circle: null;
+  user_circle: string;
   user_group: string;
   user_id: number;
   welcome_splash: number;

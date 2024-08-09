@@ -8,7 +8,8 @@ import ApiWs from "./src/api.ws.ts";
  * @module IqOption
  */
 class IqOption {
-  declare private _http: Http;
+  // ! private
+  declare _http: Http;
   declare private _ws: Ws;
   declare http: ApiHttp;
   declare ws: ApiWs;

@@ -29,11 +29,11 @@ export type * from "../core/type.ts";
 //   }
 // }
 
-export function getCommissions(ws: Ws): void {
+export function getCommissions(ws: Ws, options: GetCommissionOptions): void {
   ws.send({
     name: "get-commissions",
     version: "1.0",
-    body: { instrument_type: "fx-option", user_group_id: 197 },
+    body: options,
   });
 }
 
@@ -47,7 +47,7 @@ export function subscribeCommission(
     params: {
       routingFilters: {
         ...options,
-        user_group_id: options.user_group_id ?? 197,
+        user_group_id: options.user_group_id,
       },
     },
   });

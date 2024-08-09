@@ -17,6 +17,11 @@ export function get(
   });
 }
 
+/**
+ * @param ws
+ * @param options
+ * @returns
+ */
 export function subscribe(
   ws: Ws,
   options: SubscribeOptions,
@@ -29,7 +34,7 @@ export function subscribe(
       params: {
         routingFilters: {
           ...options,
-          user_group_id: options.user_group_id ?? 197,
+          user_group_id: options.user_group_id,
         },
       },
     },
@@ -49,7 +54,7 @@ export function unsubscribe(
       params: {
         routingFilters: {
           ...options,
-          user_group_id: options.user_group_id ?? 197,
+          user_group_id: options.user_group_id,
         },
       },
     },

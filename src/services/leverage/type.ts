@@ -18,7 +18,11 @@ export type GetOptions = {
   instrument_type: instrumentType;
 };
 
+/**
+ * @param instrument_type
+ * @param user_group_id country default user group id
+ */
 export type SubscribeOptions = {
   instrument_type: instrumentType;
-  user_group_id?: number;
+  user_group_id: number;
 };

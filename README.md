@@ -22,7 +22,7 @@ An other can be to create a propers and adapters class to adapte the messages.
 
 - [x] Http connection
   - [x] Avatar
-    - [x] get avatar
+    - [x] get avatar current or all
   - [x] Auth
     - [x] Login
     - [x] Logout
@@ -30,9 +30,9 @@ An other can be to create a propers and adapters class to adapte the messages.
     - [x] 2FA ⚙️
   - [x] Profile
     - [x] get user profile
-  - [x] financial info
-    - [x] graphql ⚙️
-    - [x] `POST` options ⚙️
+  - [ ] financial info
+    - [ ] graphql ⚙️
+    - [ ] `POST` options ⚙️
   - [x] features
     - [x] get features ⚙️
   - [x] Event
@@ -45,13 +45,13 @@ An other can be to create a propers and adapters class to adapte the messages.
     - [x] get contact info ⚙️
     - [x] get configuration ⚙️
     - [x] get manager ⚙️
-  - [x] Billing
-    - [x] `POST` buyback ⚙️
-    - [x] `POST` get card ⚙️
-    - [x] `POST` get payment methods ⚙️
-    - [x] `POST` get payout methods ⚙️
-  - [x] Balance
-    - [x] `POST` change balance ⚙️
+  - [ ] Billing
+    - [ ] `POST` buyback ⚙️
+    - [ ] `POST` get card ⚙️
+    - [ ] `POST` get payment methods ⚙️
+    - [ ] `POST` get payout methods ⚙️
+  - [ ] Balance
+    - [ ] `POST` change balance ⚙️
 - [x] Websocket connection
   - [x] Auth
     - [x] Authenticate

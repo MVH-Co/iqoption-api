@@ -47,7 +47,7 @@ export type GetOptions = {
 };
 
 export type SubscribeOptions = {
-  user_group_id?: number;
+  user_group_id: number;
   type: instrumentType;
   is_regulated?: true;
 };

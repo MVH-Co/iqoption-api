@@ -7,7 +7,7 @@ export type login = {
 
 export type logout = {
   ssid: string;
-};
+} | null;
 
 export type session = {
   id: string;

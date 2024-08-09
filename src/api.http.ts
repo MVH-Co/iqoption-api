@@ -56,7 +56,9 @@ class ApiHttp {
    * @returns {Object} - Avatar methods
    */
   get avatar(): {
-    get: (payload?: Avatar.GetPayload) => Promise<dataResponse<Avatar.avatar>>;
+    get: (
+      payload?: Avatar.GetPayload,
+    ) => Promise<dataResponse<Avatar.AvatarResponse>>;
   } {
     return {
       get: (payload?: Avatar.GetPayload) => Avatar.get(this.http, payload),
@@ -97,13 +99,13 @@ class ApiHttp {
    * @returns {Object} - Core methods
    */
   get core(): {
-    getConfiguration: () => Promise<dataResponse<unknown>>;
+    getConfiguration: () => Promise<dataResponse<Core.configuration>>;
     getCurrencies: () => Promise<dataResponse<Core.currencies>>;
-    getTimezones2: () => Promise<dataResponse<unknown>>;
-    getRegData: () => Promise<dataResponse<Profile.profile>>;
+    getTimezones2: () => Promise<dataResponse<Core.timezone>>;
+    getRegData: () => Promise<dataResponse<Core.regData>>;
     getCountries: () => Promise<dataResponse<Core.countries>>;
     getContactInfo: () => Promise<dataResponse<Core.contactInfo>>;
-    getManager: () => Promise<dataResponse<Core.contactInfo>>;
+    getManager: () => Promise<dataResponse<Core.manager>>;
   } {
     return {
       getConfiguration: () => Core.getConfiguration(this.http),

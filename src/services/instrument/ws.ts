@@ -23,7 +23,7 @@ export function subscribe(ws: Ws, options: SubscribeOptions): void {
       params: {
         routingFilters: {
           ...options,
-          user_group_id: options.user_group_id ?? 197,
+          user_group_id: options.user_group_id,
           is_regulated: options.is_regulated ?? true,
         },
       },
@@ -41,7 +41,7 @@ export function unsubscribe(ws: Ws, options: SubscribeOptions): void {
       params: {
         routingFilters: {
           ...options,
-          user_group_id: options.user_group_id ?? 197,
+          user_group_id: options.user_group_id,
           is_regulated: options.is_regulated ?? true,
         },
       },

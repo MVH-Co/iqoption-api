@@ -1,8 +1,10 @@
-import IqOption, { type dataResponse } from "./mod.ts";
-import type * as auth from "./src/services/auth/type.ts";
+import IqOption from "./mod.ts";
 
-const _iq: dataResponse<auth.login> = await IqOption.http.auth
+await IqOption.http.auth
   .login({
-    identifier: "email",
-    password: "password",
+    identifier: "user",
+    password: "passwd",
   });
+
+console.log("Done!");
+await IqOption.http.auth.logout();

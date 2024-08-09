@@ -50,7 +50,7 @@ class Http {
       });
 
       if (!this.response.ok) {
-        await this.checkJson();
+        this.json = await this.checkJson();
         if (this.json) return this.handleJsonError(this.json);
         return this.handleError(this.response.statusText, this.response.status);
       }
@@ -62,8 +62,9 @@ class Http {
         return this.handleSuccess();
       }
 
-      await this.checkJson();
+      this.json = await this.checkJson();
       if (this.json) return this.handleJson(this.json);
+      console.log(this.json);
       return this.handleSuccess();
     } catch (error) {
       if (error instanceof Error) {
@@ -89,7 +90,7 @@ class Http {
   ): dataResponse<T> {
     return {
       success: false,
-      ...(data && { data: data as T }),
+      ...(data && Object.keys(data).length !== 0 && { data: data as T }),
       error: { code, message },
     };
   }
@@ -104,7 +105,10 @@ class Http {
   private handleSuccess<T = unknown>(
     data?: Record<string, unknown>,
   ): dataResponse<T> {
-    return { success: true, ...(data && { data: data as T }) };
+    return {
+      success: true,
+      ...(data && Object.keys(data).length !== 0 && { data: data as T }),
+    };
   }
 
   /**
@@ -113,7 +117,7 @@ class Http {
    * @module Http
    * @private
    */
-  private async checkJson(): Promise<void | jsonResponse> {
+  private async checkJson(): Promise<undefined | jsonResponse> {
     try {
       const contentType = this.response.headers.get("Content-Type")?.split(";");
       if (contentType?.includes("application/json")) {
@@ -122,7 +126,7 @@ class Http {
       }
     } catch (error) {
       if (error instanceof Error) {
-        return Promise.reject(this.handleError(error.message));
+        return Promise.reject<undefined>(this.handleError(error.message));
       }
     }
   }
@@ -183,25 +187,31 @@ class Http {
    * @module Http
    * @private
    */
-  private handleJson<T = undefined>(
+  // ! private
+  handleJson<T = undefined>(
     json: jsonResponse,
   ): dataResponse<T> {
     const code = json.code;
     const success = !code || code === "success" || json.isSuccessful === true;
-    delete json.code;
-    delete json.isSuccessful;
     if (json.data) {
       json = { ...json, ...json.data };
-      delete json.data;
     }
     if (Array.isArray(json.message) && !json.message.length) {
       delete json.message;
     }
-    this.json = json;
+    if (json.result && !Array.isArray(json.result)) {
+      json = { ...json, ...json.result };
+      delete json.result;
+    }
+    delete json.code;
+    delete json.isSuccessful;
+    delete json.success;
+    delete json.data;
     if (!success) return this.handleError<T>(code || "");
     if (this.response.url.includes("/login")) {
       this.token = json.ssid as string;
     }
+
     return this.handleSuccess<T>(json);
   }
 
@@ -215,10 +225,11 @@ class Http {
    */
   private handleJsonError<T = undefined>(json: jsonResponse): dataResponse<T> {
     delete json.isSuccessful;
-    if (Array.isArray(json.message) && !json.message.length) {
-      delete json.message;
-    }
-    this.json = json;
+    ["message", "result"].forEach((key) => {
+      if (Array.isArray(json[key]) && !json[key].length) {
+        delete json[key];
+      }
+    });
     return this.handleError(
       this.response.statusText,
       this.response.status,

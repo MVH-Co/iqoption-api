@@ -20,6 +20,10 @@ export type avatar = {
   ];
 };
 
+export type AvatarResponse = {
+  result: avatar[];
+};
+
 export type GetPayload = {
   current: boolean;
 };

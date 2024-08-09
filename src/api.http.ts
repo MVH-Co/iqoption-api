@@ -146,8 +146,9 @@ class ApiHttp {
     };
   }
 
-  setCookie(cookie: string, expiresAt: number): void {
-    this.http.setCookie(cookie, expiresAt);
+  setCookie(token: string, expiresAt: number): void {
+    this.http.token = token;
+    this.http.setCookie(token, expiresAt);
   }
 }
 

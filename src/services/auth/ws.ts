@@ -1,5 +1,5 @@
 import type Ws from "../../utils/ws.ts";
-export type * from "./type.ts";
+export type { Authenticate } from "./type.ts";
 
 export function authenticate(ws: Ws): void {
   const now = Date.now();

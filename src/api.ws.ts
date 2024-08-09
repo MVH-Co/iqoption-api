@@ -95,12 +95,13 @@ class ApiWs {
    * @returns {Object} - Core methods
    */
   get core(): {
-    getCommissions: () => void;
+    getCommissions: (options: Core.GetCommissionOptions) => void;
     setOptions: () => void;
     heartbeat: (options: Core.HeartbeatOptions) => void;
   } {
     return {
-      getCommissions: () => Core.getCommissions(this.ws),
+      getCommissions: (options: Core.GetCommissionOptions) =>
+        Core.getCommissions(this.ws, options),
       setOptions: () => Core.setOptions(this.ws),
       heartbeat: (options: Core.HeartbeatOptions) =>
         Core.heartbeat(this.ws, options),
@@ -218,14 +219,14 @@ class ApiWs {
    */
   get leverage(): {
     get: (options: Leverage.GetOptions) => void;
-    subscribe: (options: Leverage.GetOptions) => void;
-    unsubscribe: (options: Leverage.GetOptions) => void;
+    subscribe: (options: Leverage.SubscribeOptions) => void;
+    unsubscribe: (options: Leverage.SubscribeOptions) => void;
   } {
     return {
       get: (options: Leverage.GetOptions) => Leverage.get(this.ws, options),
-      subscribe: (options: Leverage.GetOptions) =>
+      subscribe: (options: Leverage.SubscribeOptions) =>
         Leverage.subscribe(this.ws, options),
-      unsubscribe: (options: Leverage.GetOptions) =>
+      unsubscribe: (options: Leverage.SubscribeOptions) =>
         Leverage.unsubscribe(this.ws, options),
     };
   }

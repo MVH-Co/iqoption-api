@@ -1,5 +1,6 @@
 import type Ws from "../../utils/ws.ts";
 import type {
+  GetCommissionOptions,
   GetOvernightFeeOptions,
   HeartbeatOptions,
   SubscribeCommissionOptions,

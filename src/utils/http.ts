@@ -172,6 +172,26 @@ class Http {
   }
 
   /**
+   * @param cookie string
+   * @returns {void} - Response
+   * @method setCookie - Set cookie to headers
+   * @module Http
+   * @private
+   */
+  setCookie(token: string, expiresAt: number): void {
+    const now = Math.floor(Date.now() / 1000);
+    if (expiresAt < now) {
+      this.headers.delete("cookie");
+      return;
+    }
+    const max = 2592000;
+    const maxAge = expiresAt - now > max ? max : expiresAt - now;
+    const cookie =
+      `ssid=${token}; Max-Age=${maxAge}; Domain=iqoption.com; Path=/; Secure`;
+    this.headers.set("cookie", cookie);
+  }
+
+  /**
    * @param headers Headers
    * @returns {Record<string, string>} - Headers
    * @method headersToObject - Convert headers to object

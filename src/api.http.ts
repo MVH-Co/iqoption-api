@@ -145,6 +145,10 @@ class ApiHttp {
       get: (query: Features.GetFeaturesQuery) => Features.get(this.http, query),
     };
   }
+
+  setCookie(cookie: string, expiresAt: number): void {
+    this.http.setCookie(cookie, expiresAt);
+  }
 }
 
 export default ApiHttp;

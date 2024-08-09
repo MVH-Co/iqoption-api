@@ -10,7 +10,7 @@ class Ws {
   private _ws?: WebSocket;
   declare http: Http;
   declare url: string;
-  declare onMessage: (event: MessageEvent) => void;
+  declare onMessage: (json: Record<string, unknown>) => void;
   declare onOpen: (event: Event) => void;
   declare onClose: (event: CloseEvent) => void;
   declare onError: (event: Event) => void;
@@ -61,7 +61,6 @@ class Ws {
         const data = JSON.parse(event.data);
         this.messages.push(JSON.stringify(data));
         if (this._ws && this.onMessage) this.onMessage(data);
-        // console.log("WebSocket message received:", data);
       };
     } catch (error) {
       if (error instanceof Error) {

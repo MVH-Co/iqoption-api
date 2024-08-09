@@ -297,8 +297,8 @@ class ApiWs {
    * Send message to websocket
    * @param {string} callback - Message to send
    */
-  set onMessage(callback: (event: MessageEvent) => void) {
-    this.ws.onMessage = (event: MessageEvent) => callback(event);
+  set onMessage(callback: (json: Record<string, unknown>) => void) {
+    this.ws.onMessage = (json: Record<string, unknown>) => callback(json);
   }
 
   /**

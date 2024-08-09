@@ -5,6 +5,7 @@ import ApiWs from "./src/api.ws.ts";
 
 /**
  * IqOption class
+ * This module is the main module of the library to interact with the iqoption api
  * @module IqOption
  */
 class IqOption {

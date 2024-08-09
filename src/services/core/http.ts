@@ -11,6 +11,7 @@ import type {
   regData,
   timezone,
 } from "../core/type.ts";
+import { profile } from "../profile/type.ts";
 export type * from "../core/type.ts";
 
 export function getCurrencies(http: Http): Promise<dataResponse<currencies>> {
@@ -68,5 +69,10 @@ export function getLpApiCookies(
 
 export function getAppInit(http: Http): Promise<dataResponse<appInit>> {
   const path = "/appinit";
+  return http.fetch(path);
+}
+
+export function getProfile(http: Http): Promise<dataResponse<profile>> {
+  const path = "/getprofile";
   return http.fetch(path);
 }

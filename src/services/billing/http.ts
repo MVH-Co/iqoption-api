@@ -1,6 +1,10 @@
 import type Http from "../../utils/http.ts";
 import type { dataResponse } from "../../utils/http.ts";
-import type { PaymentMethodsPayload, PayoutMethodsPayload } from "./type.ts";
+import type {
+  ExternalCard,
+  PaymentMethodsPayload,
+  PayoutMethodsPayload,
+} from "./type.ts";
 
 const path = "billing";
 
@@ -30,4 +34,11 @@ export function payoutMethods(
   const uri = "/external/get-payload-methods";
   const body = JSON.stringify(payload);
   return http.fetch(uri, { path, options: { method: "POST", body } });
+}
+
+export function getExternalCard(
+  http: Http,
+): Promise<dataResponse<ExternalCard>> {
+  const uri = "/external/card";
+  return http.fetch(uri, { path });
 }

@@ -11,5 +11,5 @@ export function get(
 ): Promise<dataResponse<AvatarResponse>> {
   let uri = "/v1/avatars";
   uri += payload.current ? "/current" : "";
-  return http.fetch(uri, path);
+  return http.fetch(uri, { path });
 }

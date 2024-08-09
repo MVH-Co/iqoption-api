@@ -106,6 +106,8 @@ class ApiHttp {
     getCountries: () => Promise<dataResponse<Core.countries>>;
     getContactInfo: () => Promise<dataResponse<Core.contactInfo>>;
     getManager: () => Promise<dataResponse<Core.manager>>;
+    getLpApiCookies: () => Promise<dataResponse<Core.lpApiCookies>>;
+    getAppInit: () => Promise<dataResponse<Core.appInit>>;
   } {
     return {
       getConfiguration: () => Core.getConfiguration(this.http),
@@ -115,6 +117,8 @@ class ApiHttp {
       getCountries: () => Core.getCountries(this.http),
       getContactInfo: () => Core.getContactInfo(this.http),
       getManager: () => Core.getManager(this.http),
+      getLpApiCookies: () => Core.getLpApiCookies(this.http),
+      getAppInit: () => Core.getAppInit(this.http),
     };
   }
   /**
@@ -122,10 +126,10 @@ class ApiHttp {
    * @returns {Object} - Event methods
    */
   get event(): {
-    get: () => Promise<dataResponse<unknown>>;
+    options: () => Promise<dataResponse<unknown>>;
   } {
     return {
-      get: () => Event.get(this.http),
+      options: () => Event.options(this.http),
     };
   }
   /**
@@ -133,10 +137,12 @@ class ApiHttp {
    * @returns {Object} - Features methods
    */
   get features(): {
-    get: () => Promise<dataResponse<unknown>>;
+    get: (
+      query: Features.GetFeaturesQuery,
+    ) => Promise<dataResponse<Features.GetFeatures>>;
   } {
     return {
-      get: () => Features.get(this.http),
+      get: (query: Features.GetFeaturesQuery) => Features.get(this.http, query),
     };
   }
 }

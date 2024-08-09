@@ -10,5 +10,5 @@ export function post(
   const method = "POST";
   const uri = "/changebalance";
   const body = JSON.stringify(payload);
-  return http.fetch(uri, undefined, { method, body });
+  return http.fetch(uri, { options: { method, body } });
 }

@@ -10,9 +10,12 @@ export function graphql(
   payload: GraphqlPayload,
 ): Promise<dataResponse<unknown>> {
   const uri = "/graphql";
-  return http.fetch(uri, path, {
-    method: "POST",
-    body: JSON.stringify(payload),
+  return http.fetch(uri, {
+    path,
+    options: {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
   });
 }
 export function postOptions(
@@ -20,8 +23,11 @@ export function postOptions(
   payload: PostPayload,
 ): Promise<dataResponse<unknown>> {
   const uri = "/v2/options";
-  return http.fetch(uri, path, {
-    method: "POST",
-    body: payload.query,
+  return http.fetch(uri, {
+    path,
+    options: {
+      method: "POST",
+      body: payload.query,
+    },
   });
 }

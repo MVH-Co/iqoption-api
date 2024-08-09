@@ -6,12 +6,12 @@ const path = "billing";
 
 export function buyback(http: Http): Promise<dataResponse<unknown>> {
   const uri = "/buyback";
-  return http.fetch(uri, path, { method: "POST" });
+  return http.fetch(uri, { path, options: { method: "POST" } });
 }
 
 export function getCard(http: Http): Promise<dataResponse<unknown>> {
   const uri = "/external/card";
-  return http.fetch(uri, path, { method: "POST" });
+  return http.fetch(uri, { path, options: { method: "POST" } });
 }
 
 export function paymentMethods(
@@ -20,7 +20,7 @@ export function paymentMethods(
 ): Promise<dataResponse<unknown>> {
   const uri = "/external/get-payment-methods";
   const body = JSON.stringify(payload);
-  return http.fetch(uri, path, { method: "POST", body });
+  return http.fetch(uri, { path, options: { method: "POST", body } });
 }
 
 export function payoutMethods(
@@ -29,5 +29,5 @@ export function payoutMethods(
 ): Promise<dataResponse<unknown>> {
   const uri = "/external/get-payload-methods";
   const body = JSON.stringify(payload);
-  return http.fetch(uri, path, { method: "POST", body });
+  return http.fetch(uri, { path, options: { method: "POST", body } });
 }

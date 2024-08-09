@@ -1,10 +1,12 @@
 import type Http from "../../utils/http.ts";
 import type { dataResponse } from "../../utils/http.ts";
 import type {
+  appInit,
   configuration,
   contactInfo,
   countries,
   currencies,
+  lpApiCookies,
   manager,
   regData,
   timezone,
@@ -49,5 +51,22 @@ export function getConfiguration(
 
 export function getManager(http: Http): Promise<dataResponse<manager>> {
   const path = "/manager/get";
+  return http.fetch(path);
+}
+
+/**
+ * @param http
+ * @returns {Promise<dataResponse<unknown>>}
+ * @requires auth false
+ */
+export function getLpApiCookies(
+  http: Http,
+): Promise<dataResponse<lpApiCookies>> {
+  const path = "/lp/api/cookies";
+  return http.fetch(path);
+}
+
+export function getAppInit(http: Http): Promise<dataResponse<appInit>> {
+  const path = "/appinit";
   return http.fetch(path);
 }

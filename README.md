@@ -89,3 +89,23 @@ An other can be to create a propers and adapters class to adapte the messages.
     - [x] subscribe instruments
     - [x] unsubscribe instruments
   - [ ] Others...
+
+## Usage
+
+```typescript
+import IqOption from '@mvh/iqoption';
+
+console.log(
+  await IqOption.http.auth
+    .login({
+      identifier: "user",
+      password: "passwd",
+    }),
+);
+
+console.log(await IqOption.http.profile.get());
+console.log("Done!");
+
+await IqOption.http.auth.logout();
+```
+

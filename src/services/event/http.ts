@@ -3,7 +3,7 @@ import type { dataResponse } from "../../utils/http.ts";
 
 const path = "event";
 
-export function get(http: Http): Promise<dataResponse<unknown>> {
+export function options(http: Http): Promise<dataResponse<unknown>> {
   const uri = "/v1/events";
-  return http.fetch(uri, path);
+  return http.fetch(uri, { path, options: { method: "OPTIONS" } });
 }

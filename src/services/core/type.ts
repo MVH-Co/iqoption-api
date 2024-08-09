@@ -209,3 +209,62 @@ export type regData = {
   deposit_in_one_click: boolean;
   social_key: string;
 };
+
+export type lpApiCookies = {
+  aff: string;
+  aff_history: string;
+  aff_model: string;
+  aff_ts: string;
+  affextra: string;
+  afftrack: string;
+  landing: string;
+  retrack: string;
+};
+
+export type appInit = {
+  lang: {
+    [key: string]: {
+      name: string;
+      title: string;
+      selected: boolean;
+      shortname: string;
+    };
+  };
+  socials: Record<string, unknown>;
+  currencies: {
+    id: number;
+    name: string;
+    mask: string;
+    symbol: string;
+    is_default: boolean;
+    min_inversment: number;
+  }[];
+  language_stamp: string;
+  deposit_amount: number;
+  deposit_count: number;
+  deposit_stat: number;
+  push_settings: unknown[];
+  country: number;
+  user_id: number;
+  is_regulated: true;
+  is_activated: true;
+  flag: string;
+  feed_top_traders_post_ussr_countries: number[];
+  brand: {
+    icon: string;
+    image: string;
+    name: string;
+  };
+  company: {
+    aml: string;
+    domain: string;
+    email: string;
+    general_fees: string;
+    name: string;
+    order_execution_policy: string;
+    payment_policy: string;
+    privacy_policy: string;
+    subdomain: string;
+    terms: string;
+  };
+};

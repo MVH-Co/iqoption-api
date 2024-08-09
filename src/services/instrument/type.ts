@@ -29,7 +29,12 @@ export type instrument = {
   ticker: string;
 } & underlying;
 
-export type instrumentType = "crypto" | "forex" | "cfd" | "digital-option";
+export type instrumentType =
+  | "crypto"
+  | "forex"
+  | "cfd"
+  | "digital-option"
+  | "fx-option";
 
 export type activeType = "Commodity" | "Stock" | "ETF" | "Forex" | "Crypto";
 

@@ -22,8 +22,7 @@ class Http {
 
   /**
    * @param uri string
-   * @param path string
-   * @param options RequestInit
+   * @param arg { path?: string; query?: URLSearchParams; options: RequestInit; }
    * @returns {Promise<dataResponse<T>>} - Response
    * @template T - Response data type
    * @async @method fetch - Fetch data from iqoption api
@@ -31,21 +30,29 @@ class Http {
    */
   async fetch<T = unknown>(
     uri: string,
-    path?: string,
-    options: RequestInit = {},
+    arg?: {
+      path?: string;
+      query?: Record<string, string>;
+      options?: RequestInit;
+    },
   ): Promise<dataResponse<T>> {
     try {
       const url = new URL(
-        `https://${path ? path + "." : ""}iqoption.com/api${uri}`,
+        `https://${arg?.path ? arg.path + "." : ""}iqoption.com/api${uri}`,
       );
+      if (arg?.query) url.search = new URLSearchParams(arg.query).toString();
 
-      options.headers = {
-        ...options.headers,
+      !arg && (arg = {});
+      !arg.options && (arg.options = {});
+
+      arg.options.headers = {
+        ...arg?.options?.headers,
         ...this.headersToObject(this.headers),
       };
 
+      // console.log(options);
       this.response = await fetch(url, {
-        ...options,
+        ...arg?.options,
         cache: "no-cache",
       });
 
@@ -187,8 +194,7 @@ class Http {
    * @module Http
    * @private
    */
-  // ! private
-  handleJson<T = undefined>(
+  private handleJson<T = undefined>(
     json: jsonResponse,
   ): dataResponse<T> {
     const code = json.code;

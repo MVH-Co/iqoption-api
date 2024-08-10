@@ -13,7 +13,7 @@ export function get(
       version: "2.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -38,7 +38,7 @@ export function subscribe(
         },
       },
     },
-    request_id: `s_` + ws.subscribeId,
+    request_id: `s_` + ws.subscribe.id,
   });
 }
 
@@ -58,6 +58,6 @@ export function unsubscribe(
         },
       },
     },
-    request_id: `s_` + ws.subscribeId,
+    request_id: `s_` + ws.subscribe.id,
   });
 }

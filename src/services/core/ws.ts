@@ -77,7 +77,7 @@ export function setOptions(ws: Ws): void {
   ws.send({
     name: "setOptions",
     msg: { sendResults: true },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -88,7 +88,7 @@ export function heartbeat(ws: Ws, options: HeartbeatOptions): void {
       userTime: Date.now(),
       heartbeatTime: options.heartbeat,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
     local_time: options.localTime,
   });
 }

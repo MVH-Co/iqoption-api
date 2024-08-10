@@ -18,7 +18,7 @@ export function get(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -33,7 +33,7 @@ export function subscribe(
       version: "1.0",
       params: { routingFilters: { options } },
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -48,6 +48,6 @@ export function unsubscribe(
       version: "1.0",
       params: { routingFilters: { options } },
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }

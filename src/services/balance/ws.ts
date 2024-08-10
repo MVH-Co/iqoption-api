@@ -15,7 +15,7 @@ export function get(ws: Ws, options: GetOptions): void {
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -26,7 +26,7 @@ export function subscribe(ws: Ws): void {
       name: "balance-changed",
       version: "1.0",
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -37,7 +37,7 @@ export function unsubscribe(ws: Ws): void {
       name: "balance-changed",
       version: "1.0",
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 

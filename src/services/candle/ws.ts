@@ -22,7 +22,7 @@ export function get(
         only_closed: true,
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -38,7 +38,7 @@ export function subscribe(
       name: "candle-generated",
       params: { routingFilters: options },
     },
-    request_id: `s_` + ws.subscribeId,
+    request_id: `s_` + ws.subscribe.id,
   });
 }
 
@@ -56,7 +56,7 @@ export function getFirst(
         split_normalization: options.split_normalization ?? true,
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -70,6 +70,6 @@ export function unsubscribe(
       name: "candle-generated",
       params: { routingFilters: options },
     },
-    request_id: `s_` + ws.subscribeId,
+    request_id: `s_` + ws.subscribe.id,
   });
 }

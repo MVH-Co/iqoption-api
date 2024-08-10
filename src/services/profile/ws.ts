@@ -13,7 +13,7 @@ export function get(ws: Ws): void {
       name: "get-profile",
       version: "1.0",
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -24,7 +24,7 @@ export function subscribe(ws: Ws): void {
       name: "profile-changed",
       version: "1.0",
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -35,7 +35,7 @@ export function unsubscribe(ws: Ws): void {
       name: "profile-changed",
       version: "1.0",
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -50,7 +50,7 @@ export function availability(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -65,7 +65,7 @@ export function getUserInfo(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -80,7 +80,7 @@ export function userProfileClient(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 

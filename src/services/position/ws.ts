@@ -32,7 +32,7 @@ export function get(ws: Ws // body?: {
         // instrument_types,
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -70,7 +70,7 @@ export function getByType(
       //   user_balance_id: userBalanceId,
       // },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -87,7 +87,7 @@ export function getById(ws: Ws, options: GetByIDOptions): void {
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -99,7 +99,7 @@ export function close(ws: Ws, options: CloseByIdOptions): void {
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -119,7 +119,7 @@ export function getHistory(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -139,7 +139,7 @@ export function subscribeToIds(ws: Ws, options: SubscribeToIdsOptions): void {
         frequency: options.frequency ?? "frequent",
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -151,7 +151,7 @@ export function subscribe(ws: Ws, options: SubscribeOptions): void {
       version: "3.0",
       params: { routingFilters: options },
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -163,7 +163,7 @@ export function unsubscribe(ws: Ws, options: UnsubscribeOptions): void {
       version: "3.0",
       params: { routingFilters: options },
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -173,7 +173,7 @@ export function subscribeState(ws: Ws): void {
     msg: {
       name: "positions-state",
     },
-    request_id: "s_" + ws.subscribeId,
+    request_id: "s_" + ws.subscribe.id,
   });
 }
 
@@ -196,7 +196,7 @@ export function update(ws: Ws, options: UpdateOptions): void {
           take_profit_kind: options.extra?.take_profit_kind ?? "percent",
         },
       },
-      request_id: `${ws.messageId}`,
+      request_id: `${ws.messages.id}`,
     },
   });
 }

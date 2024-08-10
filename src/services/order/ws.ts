@@ -20,7 +20,7 @@ export function cancelStopLose(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -35,7 +35,7 @@ export function getAllStopLose(
       version: "1.0",
       body: options,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -53,7 +53,7 @@ export function get(
         kind: options.kind ?? null,
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -80,7 +80,7 @@ export function place(
         take_profit_kind: body.take_profit_kind || "percent",
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }
 
@@ -95,7 +95,7 @@ export function subscribeChanged(
       version: "2.0",
       params: { routingFilters: options },
     },
-    request_id: `s_${ws.subscribeId}`,
+    request_id: `s_${ws.subscribe.id}`,
   });
 }
 
@@ -106,7 +106,7 @@ export function subscribeState(ws: Ws): void {
       name: "orders-state",
       version: "1.0",
     },
-    request_id: `s_${ws.subscribeId}`,
+    request_id: `s_${ws.subscribe.id}`,
   });
 }
 
@@ -125,6 +125,6 @@ export function subscribe(
       },
       version: "1.0",
     },
-    request_id: `s_${ws.subscribeId}`,
+    request_id: `s_${ws.subscribe.id}`,
   });
 }

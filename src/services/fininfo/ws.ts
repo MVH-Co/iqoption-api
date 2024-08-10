@@ -17,6 +17,6 @@ export function get(ws: Ws, options: GetOptions) {
         },
       },
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
   });
 }

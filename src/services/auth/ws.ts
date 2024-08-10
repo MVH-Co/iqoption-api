@@ -9,7 +9,7 @@ export function authenticate(ws: Ws): void {
       ssid: ws.http.token,
       protocol: 3,
     },
-    request_id: `${ws.messageId}`,
+    request_id: `${ws.messages.id}`,
     local_time: now - Math.floor(now / 1000000) * 1000000,
   });
 }

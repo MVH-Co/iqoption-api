@@ -326,31 +326,39 @@ class ApiWs {
   }
 
   get sendedMessages(): string[] {
-    return this.ws.sendedMessages;
+    return this.ws.messages.sended;
+  }
+
+  set sendedMessages(value: string[]) {
+    this.ws.messages.sended = value;
   }
 
   get messages(): string[] {
-    return this.ws.messages;
+    return this.ws.messages.received;
   }
 
   get sendedSubscribe(): string[] {
-    return this.ws.sendedSubscribe;
+    return this.ws.subscribe.sended;
+  }
+
+  set sendedSubscribe(value: string[]) {
+    this.ws.subscribe.sended = value;
   }
 
   get messageId(): number {
-    return this.ws.messageId;
+    return this.ws.messages.id;
   }
 
   get subscribeId(): number {
-    return this.ws.subscribeId;
+    return this.ws.subscribe.id;
   }
 
-  get lastId(): number {
-    return this.ws.lastId;
+  get lastMessageId(): number {
+    return this.ws.messages.lastId;
   }
 
-  set lastId(value: number) {
-    this.ws.lastId = value;
+  set lastMessageId(value: number) {
+    this.ws.messages.lastId = value;
   }
 }
 

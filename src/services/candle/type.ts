@@ -39,7 +39,7 @@ export type candleGenerated = candle & {
   phase: string;
 };
 
-type candlesBySize = { [key in candleSizes]: candle };
+type candlesBySize = { [key in candleSizes as string]: candle };
 export type firstCandle = { candles_by_size: candlesBySize };
 export type candles = { candles: candle[] };
 

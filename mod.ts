@@ -30,3 +30,4 @@ const iqOption: IqOption = new IqOption();
 export default iqOption;
 
 export type { dataResponse } from "./src/utils/http.type.ts";
+export type { dataWsResponse, sended } from "./src/utils/ws.type.ts";

@@ -139,3 +139,9 @@ export type GetUserInfoOptions = {
 export type UserProfileClientOptions = {
   user_id: number;
 };
+
+export type ProfileMsg = {
+  isSuccessful: boolean;
+  message: [];
+  result: profile;
+};

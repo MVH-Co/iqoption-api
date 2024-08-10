@@ -1,6 +1,6 @@
 {
   "name": "@mvh/iqoption",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "exports": {
     ".": "./mod.ts",
     "./auth": "./src/services/auth/mod.ts",

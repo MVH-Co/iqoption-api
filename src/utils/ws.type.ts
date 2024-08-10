@@ -3,6 +3,7 @@ export type dataWsResponse<T = Record<string, unknown>> = {
   msg: T;
   request_id?: string;
   status: number;
+  microserviceName?: string;
 };
 
 export type sended<T = Record<string, unknown>> = {

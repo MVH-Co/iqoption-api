@@ -2,9 +2,12 @@ export type dataWsResponse<T = Record<string, unknown>> = {
   name: string;
   msg: T;
   request_id?: string;
+  status: number;
 };
 
 export type sended<T = Record<string, unknown>> = {
+  name: string;
+  request_id: string;
   message: T;
   success: "pending" | boolean;
 };

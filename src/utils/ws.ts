@@ -1,6 +1,9 @@
 import type Http from "./http.ts";
 export type * from "./ws.type.ts";
 
+const SUBSCRIBE = ["subscribeMessage", "unsubscribeMessage"];
+const MESSAGE = ["sendMessage", "authenticate", "heartbeat", "setOptions"];
+
 /**
  * Ws class
  * @param http - Http instance
@@ -115,11 +118,11 @@ class Ws {
   send(message: Record<string, unknown>): void {
     if (this.isConnected && this._ws) {
       const messagestr = JSON.stringify(message);
-      if (message.name === "subscribeMessage") {
+      if (SUBSCRIBE.includes(message.name as string)) {
         this.sendedSubscribe.push(messagestr);
         this.subscribeId += 1;
       }
-      if (message.name === "sendMessage") {
+      if (MESSAGE.includes(message.name as string)) {
         this.sendedMessages.push(messagestr);
         this.messageId += 1;
       }

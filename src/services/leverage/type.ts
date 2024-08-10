@@ -24,5 +24,5 @@ export type GetOptions = {
  */
 export type SubscribeOptions = {
   instrument_type: instrumentType;
-  user_group_id: number;
+  user_group_id?: number;
 };

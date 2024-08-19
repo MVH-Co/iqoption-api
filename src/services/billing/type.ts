@@ -19,3 +19,7 @@ export type ExternalCard = {
   iso_code: string;
   balance_type_id: number | null;
 }[];
+
+export type ResetBalanceOptions = {
+  user_balance_id?: number;
+};

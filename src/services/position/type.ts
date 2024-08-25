@@ -89,7 +89,7 @@ export type position = positionCommon & {
 export type positionClosed = { id: number };
 export type closePosition = { position_id: number };
 export type positions = {
-  positions: positions[];
+  positions: position[];
   total: number;
   limit: number;
 };

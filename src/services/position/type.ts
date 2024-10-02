@@ -199,6 +199,10 @@ export type CloseByIdOptions = {
   position_id: number;
 };
 
+export type CloseByIdsOptions = {
+  position_ids: number[];
+};
+
 export type UpdateOptions = {
   position_id: number;
   stop_lose_kind?: string | "percent";

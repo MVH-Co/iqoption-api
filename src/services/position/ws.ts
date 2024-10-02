@@ -1,6 +1,7 @@
 import type Ws from "../../utils/ws.ts";
 import type {
   CloseByIdOptions,
+  CloseByIdsOptions,
   GetByIDOptions,
   GetHistoryOptions,
   GetPositionsByType,
@@ -96,6 +97,18 @@ export function close(ws: Ws, options: CloseByIdOptions): void {
     name: "sendMessage",
     msg: {
       name: "close-position",
+      version: "1.0",
+      body: options,
+    },
+    request_id: `${ws.messages.id}`,
+  });
+}
+
+export function closeBatch(ws: Ws, options: CloseByIdsOptions) {
+  ws.send({
+    name: "sendMessage",
+    msg: {
+      name: "close-position-batch",
       version: "1.0",
       body: options,
     },

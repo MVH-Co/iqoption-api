@@ -70,7 +70,9 @@ class Ws {
       this._ws.onmessage = (ev) => {
         this.event = ev;
         const data = JSON.parse(ev.data);
-        this.messages.received.push(JSON.stringify(data));
+        if (data.name !== "heartbeat" || data.name !== "timeSync") {
+          this.messages.received.push(JSON.stringify(data));
+        }
         if (this._ws && this.onMessage) this.onMessage(data);
       };
     } catch (error) {
@@ -130,6 +132,21 @@ class Ws {
       }
       this._ws.send(messagestr);
     }
+  }
+
+  set receiveMessage(message: string) {
+    this.messages.received.push(message);
+  }
+
+  dropMessage(): void {
+    this.messages.received = [];
+  }
+
+  removeMessageByID(id: number): void {
+    this.messages.received = this.messages.received.filter((msg) => {
+      const data = JSON.parse(msg);
+      return data.id !== id;
+    });
   }
 
   reset(): void {

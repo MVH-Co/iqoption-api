@@ -1,28 +1,29 @@
 # IQ Option Api Wrapper
 
-This is a Typescript wrapper for the IQ Option API. It allows you to connect to
+This is a TypeScript wrapper for the IQ Option API. It allows you to connect to
 the IQ Option API.
 
 ## Documentation
 
-Http connection is needed to get the websocket token. The websocket token is
-needed to connect to the websocket.
+An HTTP connection is required to obtain the WebSocket token. The WebSocket
+token is needed to connect to the WebSocket.
 
-When the websocket is connected, you can listen to messages and send messages.
+Once the WebSocket is connected, you can listen to and send messages.
 
-I recommend to use the `IqOption.ws.onMessage` and `IqOption.ws.onOpen` to
-define actions when messages are received and when the websocket is opened.
+I recommend using `IqOption.ws.onMessage` and `IqOption.ws.onOpen` to define
+actions when messages are received or when the WebSocket is opened.
 
-A good practice is to create an handler to run the actions by received message
-name.
+A good practice is to create a handler to execute actions based on the received
+message names.
 
-An other can be to create a propers and adapters class to adapte the messages.
+Another approach could be to create proper classes and adapters to process the
+messages.
 
 ## Features
 
 - [x] Http connection
   - [x] Avatar
-    - [x] get avatar current or all
+    - [x] Get current or all avatars
   - [x] Auth
     - [x] Login
     - [x] Logout
@@ -40,7 +41,7 @@ An other can be to create a propers and adapters class to adapte the messages.
   - [x] Core
     - [x] get currencies ⚙️
     - [x] get timezone2 ⚙️
-    - [x] get registreted data ⚙️ (maybe even than `get user profile`)
+    - [x] get registreted data ⚙️ (possibly under `Get user profile`)
     - [x] get countries ⚙️
     - [x] get contact info ⚙️
     - [x] get configuration ⚙️
@@ -128,3 +129,10 @@ IqOption.ws.connect();
 
 console.log("Done!");
 ```
+
+### Warning
+
+Don’t forget to use `IqOption.ws.removeReceivedMessage(msg)` after consuming it.
+You will encounter a memory leak if you don’t. That’s why I recommend using a
+handler to execute actions based on received messages, and that’s why `timeSync`
+and `heartbeat` are ignored when received.

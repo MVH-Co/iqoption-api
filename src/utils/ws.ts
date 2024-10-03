@@ -71,7 +71,7 @@ class Ws {
         this.event = ev;
         const data = JSON.parse(ev.data);
         if (data.name !== "heartbeat" || data.name !== "timeSync") {
-          this.messages.received.push(JSON.stringify(data));
+          this.addReceivedMessage(JSON.stringify(data));
         }
         if (this._ws && this.onMessage) this.onMessage(data);
       };
@@ -134,8 +134,22 @@ class Ws {
     }
   }
 
-  set receiveMessage(message: string) {
+  addReceivedMessage(message: string): void {
     this.messages.received.push(message);
+  }
+
+  set receiveMessage(messages: string[]) {
+    this.messages.received = messages;
+  }
+
+  delReceivedMessage(index: number): void {
+    this.messages.received.splice(index, 1);
+  }
+
+  removeReceivedMessage(message: string): void {
+    this.messages.received = this.messages.received.filter(
+      (msg) => msg !== message,
+    );
   }
 
   dropMessage(): void {

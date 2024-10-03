@@ -337,6 +337,10 @@ class ApiWs {
     return this.ws.messages.received;
   }
 
+  set messages(value: string[]) {
+    this.ws.receiveMessage = value;
+  }
+
   get sendedSubscribe(): string[] {
     return this.ws.subscribe.sended;
   }
@@ -359,6 +363,10 @@ class ApiWs {
 
   set lastMessageId(value: number) {
     this.ws.messages.lastId = value;
+  }
+
+  removeReceivedMessage(message: string): void {
+    this.ws.removeReceivedMessage(message);
   }
 }
 

@@ -93,7 +93,7 @@ An other can be to create a propers and adapters class to adapte the messages.
 ## Usage
 
 ```typescript
-import IqOption from '@mvh/iqoption';
+import IqOption from "@mvh/iqoption";
 
 console.log(
   await IqOption.http.auth
@@ -109,3 +109,22 @@ console.log("Done!");
 await IqOption.http.auth.logout();
 ```
 
+WebSocket:
+
+```typescript
+import IqOption from "./mod.ts";
+
+// needed for token
+await IqOption.http.auth
+  .login({
+    identifier: "user",
+    password: "passwd",
+  }),
+
+IqOption.ws.onMessage = (json) => console.log(json);
+IqOption.ws.onOpen = () => IqOption.ws.auth.authenticate();
+
+IqOption.ws.connect();
+
+console.log("Done!");
+```

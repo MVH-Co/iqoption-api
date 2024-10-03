@@ -13,7 +13,7 @@ const MESSAGE = ["sendMessage", "authenticate", "heartbeat", "setOptions"];
 class Ws {
   private _ws?: WebSocket;
   private event?: Event | MessageEvent | CloseEvent | ErrorEvent;
-  declare private http: Http;
+  declare http: Http;
   declare url: string;
   declare onMessage: (json: dataWsResponse) => void;
   declare onOpen: (event: Event) => void;

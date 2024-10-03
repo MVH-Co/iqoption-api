@@ -12,7 +12,8 @@ const MESSAGE = ["sendMessage", "authenticate", "heartbeat", "setOptions"];
  */
 class Ws {
   private _ws?: WebSocket;
-  declare http: Http;
+  private event?: Event | MessageEvent | CloseEvent | ErrorEvent;
+  declare private http: Http;
   declare url: string;
   declare onMessage: (json: dataWsResponse) => void;
   declare onOpen: (event: Event) => void;
@@ -25,13 +26,16 @@ class Ws {
     lastId: number;
   };
   declare subscribe: { id: number; sended: string[]; lastId: number };
-  event?: Event | MessageEvent | CloseEvent | ErrorEvent;
   isConnected = false;
 
   constructor(http: Http) {
     this.http = http;
     this.url = "wss://iqoption.com/echo/websocket";
     this.reset();
+  }
+
+  get tokenAvailable(): boolean {
+    return this.http.token !== "" && this.http.token !== undefined;
   }
 
   /**

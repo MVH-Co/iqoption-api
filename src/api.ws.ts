@@ -43,7 +43,7 @@ class ApiWs {
   get auth(): {
     authenticate: () => void;
   } {
-    if (!this.ws.http.token) throw new Error("Token not found");
+    if (!this.ws.tokenAvailable) throw new Error("Token not found");
     return {
       authenticate: () => Auth.authenticate(this.ws),
     };
@@ -363,6 +363,14 @@ class ApiWs {
 
   set lastMessageId(value: number) {
     this.ws.messages.lastId = value;
+  }
+
+  get lastSubscribeId(): number {
+    return this.ws.subscribe.lastId;
+  }
+
+  set lastSubscribeId(value: number) {
+    this.ws.subscribe.lastId = value;
   }
 
   removeReceivedMessage(message: string): void {

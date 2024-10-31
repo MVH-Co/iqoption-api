@@ -19,7 +19,7 @@ class Http {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0.1 Safari/605.1.15",
       accept: "*/*",
     });
-    this.response = new Response();
+    this.response = new Response(null, { headers: this.headers });
   }
 
   /**
